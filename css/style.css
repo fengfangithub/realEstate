@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-width: 1200px;
+}
+.wrapper_index{
+    position: relative;
+    background-color: #fff;
+}
+
+/*导航栏*/
+.nav_bar{
+    position: absolute;
+    width: 100%;
+    z-index: 999999;
+    background-color: rgba(0,0,0,.2);
+}
+.header{
+    width: 100%;
+    height: 59px;
+    color: #ffffff;
+}
+.logo{
+    float: left;
+    width: 15%;
+    height: 100%;
+    background-color: aqua;
+}
+.header nav {
+    float: left;
+    width: 85%;
+}
+.header nav ul{
+    list-style: none;
+    line-height: 59px;
+}
+.header nav ul li{
+    height: 59px;
+    line-height: 59px;
+    cursor: pointer;
+}
+.nav_bar_left{
+    margin: 0 0 0 70px;
+    font-size: 1.2em;
+}
+.nav_bar_left li{
+    float: left;
+    display: inline-block;
+    padding: 0 10px;
+}
+.nav_bar_left li a{
+    position: relative;
+    padding: 9px 5px;
+}
+.nav_bar_left li a span{
+    height: 1px;
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    margin: 0 auto;
+}
+.nav_bar_right{
+    float: right;
+    margin: 0 30px 0 0px;
+    font-size: 1.2em;
+}
+.nav_bar_right li{
+    float: left;
+    margin: 0 18px;
+}
+.nav_bar_right .search{
+    height: 30px;
+    margin-top: 15px;
+    width: 250px;
+    background: none;
+    border-bottom: white solid 1px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+
+}
+.search_icon{
+    margin: 0 40px 0 -10px!important;
+    font-size: 1.22em;
+    opacity: 0.8;
+}
+/*导航结束*/
+
+/*轮播图*/
+.shuffling{
+    width: 100%;
+}
+.shuffling img{
+    width: 100%;
+}
