@@ -5,6 +5,7 @@
     <title>房地产主页</title>
     <link rel="stylesheet" type="text/css" href="css/index_style.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
 <body>
 <div class="wrapper_index">
     <div class="nav_bar">
@@ -40,13 +41,27 @@
                     <li><a>登录</a></li>
                     <li><a>注册</a></li>
                 </ul>
+                <div class="login"></div>
             </nav>
         </header>
     </div>
 </div>
 <div class="wrapper_index">
-    <section class="shuffling">
-        <img src="img/img1.jpg">
+    <section class="contain">
+        <div id="list" style="left:-100%;">
+            <img src="img/img3.jpg">
+            <img src="img/img1.jpg">
+            <img src="img/img2.jpg">
+            <img src="img/img3.jpg">
+            <img src="img/img1.jpg">
+        </div>
+        <div id="buttons">
+            <span index="1" class="on"></span>
+            <span index="2"></span>
+            <span index="3"></span>
+        </div>
+        <a class="arrow" id="prev">&lt;</a>
+        <a class="arrow" id="next">&gt;</a>
     </section>
 </div>
 <div class="wrapper_index">
@@ -152,7 +167,20 @@
     </section>
 </div>
 <footer>
-
+<div class="footer">
+    <ul>
+        <li><a>关于我们</a></li>
+        <li><a>联系我们</a></li>
+        <li><a>用户协议</a></li>
+        <li><a>最新问答</a></li>
+        <li><a>友情链接</a></li>
+        <li><a>隐私协议</a></li>
+        <li><a>经营许可</a></li>
+    </ul>
+    <p>2018-2020 四川省西华大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com</p>
+    <span>24小时热线 400-5041-11</span>
+</div>
 </footer>
+<script type="text/javascript" src="js/index_sf.js"></script>
 </body>
 </html>
