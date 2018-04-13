@@ -101,7 +101,6 @@ a:hover{
     border-right: none;
     transition: 1s;
     outline: none;
-    /*display: none;*/
 }
 .search:focus{
     width: 220px;
