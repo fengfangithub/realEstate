@@ -9,6 +9,10 @@ $(function () {
     var animated = false;
     var timer;
 
+    $(window).resize(function () {
+        h = parseInt($(document.body).width());
+    });
+
     function showButton() {
         for(var i=0;i<buttons.length;i++){
             if(buttons[i].className == "on"){

@@ -22,7 +22,7 @@ a:hover{
 .nav_bar{
     position: absolute;
     width: 100%;
-    z-index: 999999;
+    z-index: 2;
     background-color: rgba(0,0,0,.2);
 }
 .header{
@@ -73,18 +73,12 @@ a:hover{
 }
 .nav_bar_left li a span{
     height: 1px;
-    width: 100%;
+    width: 0%;
     background-color: #ffffff;
-    display: block;
     position: absolute;
     bottom: 0px;
     margin: 0 auto;
 }
-.login{
-
-}
-
-
 .nav_bar_right{
     float: right;
     margin: 0 15px 0 0px;
@@ -106,11 +100,7 @@ a:hover{
     border-top: none;
     border-left: none;
     border-right: none;
-    transition: 1s;
     outline: none;
-}
-.search:focus{
-    width: 220px;
 }
 .search_icon{
     margin: 0px 20px 0 -10px!important;
@@ -153,8 +143,8 @@ a:hover{
     cursor: pointer;
     float: left;
     border: 1px solid #ffffff;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background: #7e7e7e;
     margin-right: 5px;
@@ -447,4 +437,260 @@ footer{
     right: 0;
     font-size: 1.7em;
     top: 10px;
+}
+/*footer结束*/
+
+
+.dialog{
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    opacity: 0.7;
+    display: none;
+}
+
+/*登录model*/
+.login_content{
+    width: 360px;
+    height: 320px;
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: none;
+}
+.login_content p{
+    margin: 0!important;
+    padding: 0!important;
+}
+.login_content_header{
+    width: 100%;
+    padding: 0 20px;
+    position: relative;
+}
+.login_content_header h1{
+    margin: 0;
+    padding: 0;
+    height: 49px;
+    line-height: 49px;
+    width: 100%;
+    border-bottom: 1px solid #d0d6d9;
+    font-size: 1.2em;
+    color: #7e7e7e;
+}
+.login_header_span{
+    float: left;
+    line-height: 47px;
+    padding: 0 18px 0 18px ;
+    cursor: pointer;
+    border-bottom: 2px solid red;
+}
+.login_header_span:hover{
+    color: red;
+}
+.login_content_header button{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+    color: #c1c1c1;
+}
+.login_content_header button:hover{
+    color: red;
+}
+.login_body{
+     width: 100%;
+     padding: 0 30px;
+     position: relative;
+ }
+.login_body p{
+    padding: 0 18px!important;
+    color: red;
+    text-align: start!important;
+}
+.login_body p:first-child{
+    line-height: 25px;
+    height: 25px;
+}
+.login_body p{
+    height: 20px;
+    line-height: 20px;
+}
+.login_body input{
+    width: 270px;
+    padding: 12px 14px;
+    border: 1px solid rgba(84,92,99,.6);
+    border-radius: 6px;
+    outline: none;
+}
+.func{
+    width: 100%;
+    padding: 0 20px;
+    height: 20px;
+}
+.func a{
+    color: #898782;
+    cursor: pointer;
+    float: left;
+    margin-left: 80px;
+}
+.func a:hover{
+    color: red;
+}
+.func span{
+    float: left;
+}
+.func input{
+    display: block;
+    width: 13px!important;
+    float: left;
+    margin-right: 10px!important;
+}
+.login_body button{
+    width: 290px;
+    height: 48px;
+    background-color: #f20d0d;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    color: #ffffff;
+    font-size: 1.2em;
+    letter-spacing: 20px;
+}
+.login_body button:hover{
+    background-color: #c20a0a;
+}
+/*注册model*/
+.register_content{
+    width: 550px;
+    height: 470px;
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: none;
+}
+.register_content_header{
+    width: 100%;
+    padding: 0 20px;
+    position: relative;
+}
+.register_content_header h1{
+    margin: 0;
+    padding: 0;
+    height: 49px;
+    line-height: 49px;
+    width: 100%;
+    border-bottom: 1px solid #d0d6d9;
+    font-size: 1.2em;
+    color: #7e7e7e;
+}
+.register_header_span{
+    float: left;
+    line-height: 47px;
+    padding: 0 18px 0 18px ;
+    cursor: pointer;
+    border-bottom: 2px solid red;
+}
+.register_header_span:hover{
+    color: red;
+}
+.register_content_header button{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+    color: #c1c1c1;
+}
+.register_content_header button:hover{
+    color: red;
+}
+.register_body{
+    width: 100%;
+    padding: 10px 50px;
+}
+.register_body p{
+    height: 18px;
+    line-height: 18px;
+    color: red;
+    text-align: start!important;
+}
+.register_form{
+    width: 100%;
+    height: 60px;
+    line-height: 30px;
+    text-align: start;
+}
+.register_form label{
+    width: 80px;
+    text-align: end;
+    margin-right: 20px;
+}
+.register_form label em{
+    color: #ff0000;
+    margin: 0 6px 0 0;
+    font-size: 1.1em;
+    line-height: 32px;
+}
+.register_form input{
+    width: 250px;
+    padding: 5px 3px;
+    border: 1px solid rgba(84,92,99,.6);
+    border-radius: 6px;
+    height: 35px;
+}
+.register_form p{
+    height: 20px;
+    line-height: 15px;
+}
+.gender{
+    text-align: start;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+.gender label{
+    width: 80px;
+    text-align: end;
+    margin: 0 20px 0px 0;
+}
+.gender input{
+    width: 15px;
+    height: 15px;
+    margin: 0px!important;
+}
+.gender span{
+    margin: 0 20px 0 10px;
+}
+.register_body button{
+    width: 90px;
+    height: 35px;
+    border: none;
+    background-color: red;
+    color: #ffffff;
+    margin: 10px 0 0 350px;
+    outline: none;
+    border-radius: 10px;
 }
