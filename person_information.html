@@ -4,66 +4,176 @@
     <meta charset="UTF-8">
     <title>个人主页</title>
     <link rel="stylesheet" type="text/css" href="css/person_information_style.css">
+    <link rel="stylesheet" type="text/css" href="css/animation_style.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="tool/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="wrapper_index">
-    <div class="nav_bar">
-        <header class="header">
+    <header>
+        <div class="navigation">
             <div class="logo"></div>
-            <nav>
-                <ul class="nav_bar_left">
-                    <li>
-                        <a>首页<span></span></a>
-                    </li>
-                    <li>
-                        <a>新房<span></span></a>
-                    </li>
-                    <li>
-                        <a>二手房<span></span></a>
-                    </li>
-                    <li>
-                        <a>租房<span></span></a>
-                    </li>
-                    <li>
-                        <a>商铺<span></span></a>
-                    </li>
-                    <li>
-                        <a>移动APP<span></span></a>
-                    </li>
-                    <li>
-                        <a>附近<span></span></a>
-                    </li>
+            <div class="menu">
+                <ul>
+                    <li><a>首页</a></li>
+                    <li><a>新房</a></li>
+                    <li><a>二手房</a></li>
+                    <li><a>租房</a></li>
+                    <li><a>商铺</a></li>
+                    <li><a>移动APP</a></li>
+                    <li><a>附近</a></li>
                 </ul>
-                <ul class="nav_bar_right">
-                    <li><input class="search" type="text"></li>
-                    <li class="search_icon"><i class="glyphicon glyphicon-search"></i></li>
-                    <li><a>登录</a></li>
-                    <li><a>注册</a></li>
-                </ul>
-            </nav>
-        </header>
+                <div class="person">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <a>150xxxxx235</a>
+                    <a>退出</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="user_information">
+    <div class="left">
+        <div class="person_img"></div>
+        <div class="person_name">欢迎你，xxxxx</div>
+        <ul>
+            <li><a>个人信息</a></li>
+            <li><a>发布房屋</a></li>
+            <li><a>房屋管理</a></li>
+            <li><a>申请记录</a></li>
+            <li><a>消息记录</a></li>
+        </ul>
     </div>
-</div>
-<div class="wrapper_index">
-    <section class="person_information"></section>
-</div>
-<div class="wrapper_index">
-    <section class="person_information_content">
-        <div class="content_left">
-            <ul>
-                <li><a href="#">个人信息</a></li>
-                <li><a href="#">交易记录</a></li>
-                <li><a>房屋管理</a></li>
-                <li><a>申请记录</a></li>
-                <li><a>发布房屋信息</a></li>
-                <li><a>消息记录</a></li>
-            </ul>
+    <div class="right">
+        <header class="header">发布房屋信息</header>
+        <div class="person_information">
+            <div class="head_portrait"></div>
+            <div class="content">
+                <label>昵称:</label>
+                <input type="text" readonly="readonly" value="fengfan">
+            </div>
+            <div class="content">
+                <label>电话号码:</label>
+                <input type="text">
+            </div>
+            <div class="content">
+                <label>性别:</label>
+                <input type="text">
+            </div>
+            <div class="content">
+                <label>地址:</label>
+                <input type="text">
+            </div>
         </div>
-        <div class="content_right">
-            <div></div>
+        <div class="publish_house">
+            <div class="house_content">
+                <label><span>*</span>展示名:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>所在商圈:</label>
+                <input type="text">
+            </div>
+            <div class="house_content">
+                <label><span>*</span>所在小区:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>具体地址:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>房屋面积:</label>
+                <input type="text">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label>联系人:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>联系方式:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>房屋类型:</label>
+                <input type="text" placeholder="必填">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label>房屋价格:</label>
+                <input type="text">
+            </div>
+            <div class="house_img">
+                <a class="file">图片上传
+                    <input type="file" name="" id="">
+                </a>
+                <img>
+                <img>
+                <img>
+                <img>
+                <img>
+            </div>
+            <div class="button">
+                <button>发布</button>
+            </div>
         </div>
-    </section>
+        <div class="manage_house">
+            <div class="manage_content">
+                <span>展示名</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>展示名</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>展示名</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>展示名</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <footer>
     <div class="footer">
@@ -76,8 +186,8 @@
             <li><a>隐私协议</a></li>
             <li><a>经营许可</a></li>
         </ul>
-        <p>2018-2020 四川省西华大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com</p>
-        <span>24小时热线 400-5041-11</span>
+        <p>2018-2020 四川省xxx大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com<br><span>24小时热线 400-5041-11</span></p>
+
     </div>
 </footer>
 </body>

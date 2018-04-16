@@ -4,134 +4,55 @@
     <meta charset="UTF-8">
     <title>高级搜索</title>
     <link rel="stylesheet" type="text/css" href="css/advanced_search_style.css">
+    <link rel="stylesheet" type="text/css" href="css/header_footer.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="tool/jquery-3.3.1.js"></script>
 </head>
 <body>
 <div class="wrapper_index">
-    <div class="nav_bar">
-        <header class="header">
-            <div class="logo"></div>
-            <nav>
-                <ul class="nav_bar_left">
-                    <li>
-                        <a>首页<span></span></a>
-                    </li>
-                    <li>
-                        <a>新房<span></span></a>
-                    </li>
-                    <li>
-                        <a>二手房<span></span></a>
-                    </li>
-                    <li>
-                        <a>租房<span></span></a>
-                    </li>
-                    <li>
-                        <a>商铺<span></span></a>
-                    </li>
-                    <li>
-                        <a>移动APP<span></span></a>
-                    </li>
-                    <li>
-                        <a>附近<span></span></a>
-                    </li>
+    <header>
+        <div class="contain">
+            <ul>
+                <li><a>首页</a></li>
+                <li><a>新房</a></li>
+                <li><a>二手房</a></li>
+                <li><a>租房</a></li>
+                <li><a>商铺</a></li>
+                <li><a>移动APP</a></li>
+                <li><a>附近</a></li>
+            </ul>
+            <div class="person">
+                <span class="glyphicon glyphicon-user"></span>
+                <a>150xxxxx235</a>
+                <a>退出</a>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="wrapper_index">
+    <div class="header">
+        <div class="menu">
+            <a></a>
+            <div class="menu_ul">
+                <ul>
+                    <li><a>在售</a></li>
+                    <li><a>成交</a></li>
+                    <li><a>二手</a></li>
+                    <li><a>商铺</a></li>
                 </ul>
-                <ul class="nav_bar_right">
-                    <li><input class="search" type="text"></li>
-                    <li class="search_icon"><i class="glyphicon glyphicon-search"></i></li>
-                    <li><a>登录</a></li>
-                    <li><a>注册</a></li>
-                </ul>
-            </nav>
-        </header>
+            </div>
+        </div>
+        <div class="search">
+            <div class="input">
+                <input type="text" placeholder="请输入名字，小区">
+                <button><span class="glyphicon glyphicon-search"></span></button>
+            </div>
+        </div>
     </div>
-</div>
-<div class="clear"></div>
-<div class="wrapper_index">
-        <div class="status_bar_content">
-            <span>xxx房产</span>
-        </div>
-</div>
-<div class="wrapper_index">
-    <section class="search_home">
-        <div class="search_home_content">
-            <input type="text">
-            <button>搜索</button>
-        </div>
-    </section>
 </div>
 <div class="wrapper_index">
     <section class="check">
-        <div class="check_bt">
-            <a class="check_bt_focus">区域搜索</a>
-        </div>
-        <div class="check_bt_content">
-            <div class="bt1_content">
-                <div class="item_1">
-                    <span>区域：</span>
-                    <span>
-                        <a>全部</a>
-                        <a>xx</a>
-                        <a>ff</a>
-                        <a>eee</a>
-                        <a>sd</a>
-                        <a>fggd</a>
-                    </span>
-                </div>
-                <div class="item_2">
-                    <span class="price">价格：</span>
-                    <span class="price_content1">
-                        <a>全部</a>
-                        <a>50万以下</a>
-                        <a>50-100万</a>
-                        <a>100-150万</a>
-                        <a>150-200万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                    </span>
-                    <span class="price_content2">
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                        <a>200-250万</a>
-                    </span>
-                </div>
-                <div class="item_1">
-                    <span>面积：</span>
-                    <span>
-                        <a>全部</a>
-                        <a>50m<sup>2</sup>以上</a>
-                        <a>50-70m<sup>2</sup></a>
-                        <a>70-90m<sup>2</sup></a>
-                        <a>90-110m<sup>2</sup></a>
-                        <a>110-130m<sup>2</sup></a>
-                        <a>130-150m<sup>2</sup></a>
-                        <a>150-200m<sup>2</sup></a>
-                        <a>200-300m<sup>2</sup></a>
-                        <a>300以上m<sup>2</sup></a>
-                    </span>
-                </div>
-                <div class="item_1">
-                    <span>户型：</span>
-                    <span>
-                        <a>全部</a>
-                        <a>一室</a>
-                        <a>两室</a>
-                        <a>三室</a>
-                        <a>四室</a>
-                        <a>五室</a>
-                        <a>五室以上</a>
-                    </span>
-                </div>
-                <div class="item_3">
-                    <span>当前搜索条件:</span>
-                </div>
-            </div>
-        </div>
+
     </section>
 </div>
 <div class="wrapper_index">
@@ -170,9 +91,10 @@
             <li><a>隐私协议</a></li>
             <li><a>经营许可</a></li>
         </ul>
-        <p>2018-2020 四川省西华大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com</p>
+        <p>2018-2020 四川省xxx大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com</p>
         <span>24小时热线 400-5041-11</span>
     </div>
 </footer>
+<!--dialog-->
 </body>
 </html>

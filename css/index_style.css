@@ -101,6 +101,10 @@ a:hover{
     border-left: none;
     border-right: none;
     outline: none;
+    transition: 1s;
+}
+.search:focus{
+    width: 200px;
 }
 .search_icon{
     margin: 0px 20px 0 -10px!important;
@@ -634,6 +638,8 @@ footer{
     line-height: 18px;
     color: red;
     text-align: start!important;
+    margin: 0;
+    text-indent: 100px;
 }
 .register_form{
     width: 100%;
@@ -646,7 +652,7 @@ footer{
     text-align: end;
     margin-right: 20px;
 }
-.register_form label em{
+.register_body em{
     color: #ff0000;
     margin: 0 6px 0 0;
     font-size: 1.1em;
@@ -690,7 +696,7 @@ footer{
     border: none;
     background-color: red;
     color: #ffffff;
-    margin: 10px 0 0 350px;
+    margin: 0 0 0 370px;
     outline: none;
     border-radius: 10px;
 }

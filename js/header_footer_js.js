@@ -29,25 +29,50 @@ $(function () {
     login.onclick = function () {
         dialog.css("display", "block");
         login_content.css("display", "block");
+        $(document.body).css({
+            "overflow-y": "hidden"
+        });
     };
     login_cancel.click(function () {
         dialog.css("display", "none");
         login_content.css("display", "none");
+        $(document.body).css({
+            "overflow-y": "auto"
+        });
     });
     //注册弹出框事件
     register.onclick = function () {
         dialog.css("display", "block");
         register_content.css("display", "block");
+        $(document.body).css({
+            "overflow-y": "hidden"
+        });
     };
     register_cancel.click(function () {
         dialog.css("display", "none");
         register_content.css("display", "none");
+        $(document.body).css({
+            "overflow-y": "auto"
+        });
     });
+    //性别选择事件
+    var checkbox = $(".gender input");
+    for(var i = 0; i < checkbox.length; i++){
+        checkbox[i].onclick = function () {
+                if(this.checked){
+                    for(var j = 0; j < checkbox.length; j++){
+                        if(this != checkbox[j]){
+                            checkbox[j].checked = false;
+                        }
+                    }
+
+                }
+        };
+    }
 
     //登录事件
     var login_event = $(".login_body button");
     login_event.click(function () {
-
         var account = $(".login_body input[type='text']").val();
         var password = $(".login_body input[type='password']").val();
         var login_check = $(".func input[type='checkbox']")[0].checked;
@@ -91,45 +116,67 @@ $(function () {
     var register_event = $(".register_body button");
     register_event.click(function () {
         var inputs = $(".register_form input");
-        var name = $(inputs[0]).val();
+        var phone = $(inputs[0]).val();
         var password = $(inputs[1]).val();
         var sure_password = $(inputs[2]).val();
-        var phone = $(inputs[3]).val();
+        var name = $(inputs[3]).val();
         var address = $(inputs[4]).val();
         var checkbox = $(".gender input");
         var sex = null;
-        var p = $(".register_form p");
-        console.log(inputs);
-        console.log(p);
+        var p = $(".register_body p");
         for(var i = 0; i < checkbox.length ;i++){
             if(checkbox[i].checked){
                 sex = $(checkbox[i]).val();
             }
         }
-        if(name == ""){
-            $(p[0]).html("用户名为空");
-            return;
-        }else{
-            $(p[0]).html("");
-        }
-        if(password == ""){
-            $(p[1]).html("密码为空");
+        if(phone == ""){
+            $(p[1]).html("电话号码为空");
             return;
         }else{
             $(p[1]).html("");
         }
-        if(name){
-            $(p[2]).html("两次密码不匹配");
+        if(password == ""){
+            $(p[2]).html("密码为空");
             return;
         }else{
             $(p[2]).html("");
         }
-        if(phone == ""){
-            $(p[3]).html("电话为空");
+        if(!(password == sure_password)){
+            $(p[3]).html("两次密码不匹配");
             return;
         }else{
             $(p[3]).html("");
         }
-
+        if(name == ""){
+            $(p[4]).html("用户名为空");
+            return;
+        }else{
+            $(p[4]).html("");
+        }
+        if(sex == null){
+            $(p[5]).html("请选择性别");
+            return;
+        }else {
+            $(p[5]).html("");
+        }
+        $.ajax({
+            url: "http://www.xhban.com:8080/EM/user/register",
+            type: "post",
+            async: false,
+            data:{
+                name: name,
+                sex: sex,
+                phone: phone,
+                password: password,
+                address: address
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 });

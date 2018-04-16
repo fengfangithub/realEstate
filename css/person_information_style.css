@@ -1,204 +1,328 @@
-*{
+/*顶部导航栏*/
+body{
+    background-color: #f0f0f0!important;
+}
+ul{
+    list-style: none;
+}
+a{
+    cursor: pointer;
+}
+.wrapper_index header{
+    width: 100%;
+    height: 55px;
+}
+.navigation{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-color: #3cb570;
+}
+.navigation .logo{
+    width: 100px;
+    height: 100%;
+    float: left;
+    background-color: green;
+}
+.navigation .menu{
+    width: 900px;
+    height: 100%;
+    line-height: 55px;
+}
+.menu ul{
+    margin: 0px;
+}
+.menu ul li{
+    float: left;
+    margin-right: 20px;
+    font-size: 1.2em;
+}
+.menu ul li a{
+    color: #ffffff;
+}
+.menu ul li a:hover{
+    text-decoration: none;
+}
+.menu .person{
+    float: right;
+    color: #a1a1a1;
+    width: 145px;
+}
+.person span{
+    color: #ffffff;
+}
+.person a{
+    color: #ffffff;
+}
+.person a:hover{
+    color: #ffffff;
+}
+.menu a:last-child{
+    margin-left: 10px;
+}
+/*结束*/
+.user_information{
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    padding: 30px 0;
+    overflow: hidden;
+}
+.user_information .left{
+    width: 150px;
+    height: 700px;
+    padding: 35px 0 6px 0;
+    background-color: #ffffff;
+    float: left;
+    box-shadow: 0 0 5px #adaba2;
+}
+.person_img{
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background-image: url("../img/img1.jpg");
+    background-size: cover;
+}
+.person_name{
+    width: 100%;
+    height: 48px;
+    padding: 15px 5px;
+    font-size: 1.15em;
+}
+.left ul{
     margin: 0;
     padding: 0;
+    list-style: none;
 }
-body{
-    min-width: 1300px;
-    font-family: "微软雅黑"!important;
+.left ul li{
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.15em;
+    margin-bottom: 10px;
 }
-a:hover{
-    text-decoration: none!important;
+.left ul li:first-child{
+    background-color: #3cb570;
 }
-.wrapper_index{
-    position: relative;
-    background-color: #fff;
-    width: 100%;
+.left ul li a{
+    color: #52514d;
+    display: inline-block;
+    width: 108px;
+    text-align: start;
+}
+.user_information .right{
+    width: 827px;
+    height: auto;
+    float: right;
+    padding: 35px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px #adaba2;
 }
 
-/*导航栏*/
-.nav_bar{
-    width: 100%;
-    z-index: 999999;
-    background-color: #ffffff;
-    position: absolute;
-}
-.header{
-    width: 100%;
-    height: 59px;
-    color: #6a6a6a;
-    box-shadow: 0px 1px 20px #c0c0c0;
-}
-.header a{
-    color: #6a6a6a;!important;
-}
-.logo{
-    float: left;
-    width: 200px;
-    height: 100%;
-    background-color: aqua;
-}
-.header nav {
-    float: left;
-    width: calc(100% - 200px);
-}
-.header nav ul{
-    list-style: none;
-    line-height: 59px;
-}
-.header nav ul li{
-    height: 59px;
-    line-height: 59px;
-    cursor: pointer;
-}
-.nav_bar_left{
-    float: left;
-    margin: 0 0 0 70px;
-    font-size: 1.1em;
-}
-.nav_bar_left a:hover{
-    color: #000000!important;
-}
-.nav_bar_left li{
-    float: left;
-    display: inline-block;
-    padding: 0 10px;
-}
-.nav_bar_left li a{
-    position: relative;
-    padding: 9px 5px;
-}
-.nav_bar_left li a span{
-    height: 1px;
-    width: 100%;
-    background-color: #2e2e2e;
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    margin: 0 auto;
-}
-.nav_bar_right{
-    float: right;
-    margin: 0 15px 0 0px;
-    font-size: 1.1em;
-    color: #6a6a6a;
-}
-.header .nav_bar_right a:hover{
-    color: red;!important;
-}
-.nav_bar_right li{
-    float: left;
-    margin: 0 20px;
-}
-.nav_bar_right .search{
-    height: 30px;
-    margin-top: 15px;
-    width: 150px;
-    background: none;
-    border-bottom: #000000 solid 1px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    transition: 1s;
-    outline: none;
-}
-.search:focus{
-    width: 220px;
-}
-.search_icon{
-    margin: 0px 20px 0 -10px!important;
-    font-size: 1.22em;
-    opacity: 0.8;
-}
-/*导航结束*/
 
 /*个人信息*/
-.person_information_content a{
-    color: #c0c0c0 !important;
-    cursor: pointer;
-    font-size: 1.3em;
-}
 .person_information{
     width: 100%;
-    height: 148px;
-    position: absolute;
-    top: 59px;
-    background-color: #c0c0c0;
-}
-.person_information_content{
-    width: 1200px;
-    height: 1000px;
-    margin: 0 auto;
-    position: absolute;
-    top: 207px;
-    left: 50%;
-    transform: translate(-50%);
-}
-.content_left{
-    background-color: antiquewhite;
-    width: 172px;
-    height: 100%;
-    position: absolute;
-}
-.content_left ul{
-    list-style: none;
-
-}
-.content_left ul li{
-    margin-top: 10px;
-    line-height: 45px;
-}
-.content_left ul li a{
-    display: inline-block;
-    line-height: 45px;
-    width: 100%;
-}
-.content_right{
-    width: calc(100% - 172px);
-    height: 100%;
-    position: absolute;
-    left: 172px;
-    background-color: azure;
-}
-/*个人信息结束*/
-/*footer*/
-footer{
-    width: 100%;
-    height: 100px;
-    background-color: #2b2b2b;
-}
-.footer {
-    width: 1000px;
-    height: 100%;
-    margin: 0 auto;
-    color: #898782;
+    height: 350px;
     position: relative;
+    display: none;
+}
+.header{
+    font-size: 1.6em;
+    border-bottom: 2px solid #3cb570;
+    margin-bottom: 20px;
+}
+.person_information .content{
+    width: 100%;
+    text-align: start;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+.person_information .head_portrait{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    right: 80px;
+    top: 60px;
+    background-image: url("../img/img2.jpg");
+    background-size: cover;
+}
+.content label{
+    width: 70px;
+    text-align: end;
+}
+.content input{
+    height: 30px;
+    width: 200px;
+    color: #555;
+    border: none;
+    /*border-bottom: 1px solid #ccc;*/
+    padding: 6px 12px;
+    margin-left: 30px;
+    outline: none;
+}
+/*发布房屋信息*/
+.publish_house{
+    width: 100%;
+    height: auto;
+    display: none;
+}
+.house_content{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.house_content p{
+    padding: 0;
+    margin: 0;
+    line-height: 15px;
+    height: 15px;
+    text-align: center;
+    width: 100px;
+    margin-left: 260px;
+    color: red;
+}
+.house_content label{
+    width:80px;
+    text-align: end;
+    line-height: 40px;
+}
+.house_content label span{
+    color: red;
+    font-size: 1.5em;
+    margin-right: 5px;
+    line-height: 20px;
+}
+.house_content input{
+    height: 40px;
+    width: 300px;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    outline: none;
+    border-radius: 5px;
+    margin-left: 80px;
+}
+.house_img{
+    width: 62%;
+    height: auto;
+    border: 1px solid #c1c1c1;
+    margin: 0 auto;
+}
+.file {
+    position: relative;
+    display: inline-block;
+    background: #b7b4ac;
+    border: 1px solid #b7b4ac;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #ffffff;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.file:hover {
+    background: #b7b4ac;
+    border-color: #b7b4ac;
+    color: #ffffff;
+    text-decoration: none;
+}
+.house_img img{
+    width: 60px;
+    height: 60px;
+    margin-left: 12px;
+}
+.button{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.button button{
+    height: 40px;
+    width: 300px;
+    border: none;
+    background-color: #3cb570;
+    letter-spacing: 10px;
+    color: #ffffff;
+    font-size: 1.3em;
+    text-align: center;
+}
+/*房屋信息管理*/
+.manage_house{
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+.manage_content{
+    width: 100%;
+    height: 72px;
+    padding: 24px 0;
+    border-bottom: 1px solid #f3efe4;
+}
+.manage_content>span{
+    width: 160px;
+    display: inline-block;
+    float: left;
+    text-align: start;
+    font-size: 1.1em;
+}
+.manage_input{
+    width: calc(100% - 160px);
+    height: 100%;
+    float: left;
+}
+.manage_input input{
+    border: none;
+    outline: none;
+    color: #b7b4ac;
+    width: 80%;
+    float: left;
+}
+.manage_input .action_box{
+    width: 20%;
+    height: 100%;
+    float: left;
+    text-align: end;
+    line-height: 23px;
+}
+.action_box span{
+    margin-right: 5px;
+}
+
+footer{
+    margin-top: 58px;
+}
+.footer{
+    width: 1000px;
+    text-align: center;
+    height: 100px;
+    margin: 0 auto;
 }
 .footer ul{
-    list-style: none;
-    margin: 0!important;
-    text-align: center;
-    display: block;
-    position: absolute;
-    top: 10px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
 }
 .footer ul li{
     float: left;
-    font-size: 1.1em;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 .footer ul li a{
-    color: #898782;
-    cursor: pointer;
+    color: #919191;
 }
 .footer p{
-    position: absolute;
-    top: 40px;
-    line-height: 30px;
-    margin: 0;
-}
-.footer span{
-    position: absolute;
-    right: 0;
-    font-size: 1.7em;
-    top: 10px;
+    color: #919191;
 }
