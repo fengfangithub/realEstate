@@ -1,0 +1,299 @@
+/*顶部导航栏*/
+body{
+    background-color: #f0f0f0!important;
+    min-width: 1250px;
+}
+ul{
+    list-style: none;
+}
+a{
+    cursor: pointer;
+}
+.wrapper_index header{
+    width: 100%;
+    height: 55px;
+}
+.navigation{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-color: #3cb570;
+}
+.navigation .logo{
+    width: 100px;
+    height: 100%;
+    float: left;
+    background-color: green;
+}
+.navigation .menu{
+    width: 900px;
+    height: 100%;
+    line-height: 55px;
+}
+.menu ul{
+    margin: 0px;
+}
+.menu ul li{
+    float: left;
+    margin-right: 20px;
+    font-size: 1.1em;
+}
+.menu ul li a{
+    color: #ffffff;
+}
+.menu ul li a:hover{
+    text-decoration: none;
+}
+.menu .person{
+    float: right;
+    color: #a1a1a1;
+    width: 145px;
+}
+.person span{
+    color: #ffffff;
+}
+.person a{
+    color: #ffffff;
+}
+.person a:hover{
+    color: #ffffff;
+}
+.menu a:last-child{
+    margin-left: 10px;
+}
+/*结束*/
+
+/*房屋信息顶部*/
+.house_information{
+    width: 100%;
+    height: auto;
+}
+.house_information .top{
+    width: 1000px;
+    height: 80px;
+    margin: 0 auto;
+    line-height: 80px;
+}
+.house_information .top .search{
+    float: right;
+    width: 420px;
+    height: 40px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border: 1px solid #d8d8d8;
+    line-height: 40px;
+}
+.search input{
+    width: 370px;
+    height: 36px;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    float: left;
+}
+.search span{
+    display: block;
+    width: 48px;
+    height: 40px;
+    float: right;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.5em;
+    color: #a1a1a1;
+    cursor: pointer;
+}
+/*房屋介绍Q */
+.house_information_content{
+    width: 1000px;
+    height: 440px;
+    margin: 0 auto;
+}
+/*图片展示*/
+.contain{
+    width: 650px;
+    height: 470px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+}
+#list{
+    width: 200%;
+    height: 85%;
+    position: absolute;
+    z-index: 1;
+}
+#list img{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+.arrow{
+    cursor: pointer;
+    display: block;
+    line-height: 70px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    width: 40px;
+    height:70px;
+    position: absolute;
+    z-index: 2000;
+    background: rgba(0,0,0,.3);
+    color: #ffffff;
+}
+.arrow:hover{
+    background-color: rgba(0,0,0,.7);
+    text-decoration: none;
+    color: #ffffff;
+}
+#prev{
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+#next{
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+.contain_img_menu{
+    width: 100%;
+    height: 12%;
+    position: absolute;
+    bottom: 0;
+}
+.contain_img_menu img{
+    width: 60px;
+    height: 100%;
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+.house_information_details{
+    width: 350px;
+    float: left;
+    height: 100%;
+}
+.head{
+    width: 100%;
+    height: 100px;
+    padding: 20px 0 0 0px;
+    margin-left: 20px;
+    border-bottom: 1px solid #cfcfcf;
+}
+.head h3{
+    margin: 0;
+}
+.head p{
+    margin-top: 5px;
+}
+.head p span:first-child{
+    margin-right: 15px;
+}
+.head p span:last-child{
+    font-size: 2em;
+    color: red;
+    margin-right: 5px;
+}
+.house_content{
+    width: 100%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.house_mark{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.house_mark span{
+    display: block;
+    width: 70px;
+    height: 100%;
+    float: left;
+    margin-right: 20px;
+    background-color: #F9FEF4;
+    text-align: center;
+    line-height: 30px;
+    border-radius:3px;
+    color: #3cb570;
+    border: 1px solid #7ED321;
+}
+.details{
+    width: 100%;
+    height: 200px;
+}
+.details_content{
+    width: 100%;
+    height: calc(100% / 6);
+}
+.details_content span:first-child{
+    display: block;
+    font-size: 1.1em;
+    color: #a1a1a1;
+    margin-right: 30px;
+    float: left;
+    height: 100%;
+    line-height: 33px;
+    width: 20%;
+    text-align: end;
+}
+.details_content span:last-child{
+    display: block;
+    float: left;
+    font-size: 1.1em;
+    height: 100%;
+    line-height: 33px;
+    width: 70%;
+}
+.phone{
+    width: 100%;
+    height: 80px;
+    margin-left: 20px;
+    line-height: 80px;
+}
+.phone p span{
+    font-size: 2.2em;
+    color: #9d2614;
+}
+.phone p span:first-child{
+    margin-right: 20px;
+}
+/*同类房屋*/
+.similar{
+    width: 100%;
+    height: 300px;
+}
+
+footer{
+    margin-top: 58px;
+}
+.footer{
+    width: 1000px;
+    text-align: center;
+    height: 100px;
+    margin: 0 auto;
+}
+.footer ul{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.footer ul li{
+    float: left;
+    margin-right: 10px;
+}
+.footer ul li a{
+    color: #919191;
+}
+.footer p{
+    color: #919191;
+}

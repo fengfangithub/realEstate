@@ -15,7 +15,7 @@
             <div class="logo"></div>
             <div class="menu">
                 <ul>
-                    <li><a>首页</a></li>
+                    <li><a href="index.html">首页</a></li>
                     <li><a>新房</a></li>
                     <li><a>二手房</a></li>
                     <li><a>租房</a></li>
@@ -39,14 +39,21 @@
         <ul>
             <li><a>个人信息</a></li>
             <li><a>发布房屋</a></li>
-            <li><a>房屋管理</a></li>
-            <li><a>申请记录</a></li>
-            <li><a>消息记录</a></li>
+            <li><a>房屋信息</a></li>
+            <li><a>交易记录</a></li>
+            <li><a>发布记录</a></li>
+            <li><a>购房记录</a></li>
+            <li><a>密码修改</a></li>
         </ul>
     </div>
     <div class="right">
-        <header class="header">发布房屋信息</header>
         <div class="person_information">
+            <header class="header">个人信息管理</header>
+            <div class="header_menu">
+                <a>个人信息</a>
+                <a>修改信息</a>
+                <a>修改密码</a>
+            </div>
             <div class="head_portrait"></div>
             <div class="content">
                 <label>昵称:</label>
@@ -54,15 +61,15 @@
             </div>
             <div class="content">
                 <label>电话号码:</label>
-                <input type="text">
+                <input type="text" value="15202849186">
             </div>
             <div class="content">
                 <label>性别:</label>
-                <input type="text">
+                <input type="text" value="男">
             </div>
             <div class="content">
                 <label>地址:</label>
-                <input type="text">
+                <input type="text" value="四川省郫都区红光镇西华大学">
             </div>
         </div>
         <div class="publish_house">
@@ -71,6 +78,18 @@
                 <input type="text" placeholder="必填">
                 <p></p>
             </div>
+            <div class="house_content">
+                <label><span>*</span>发布类型:</label>
+                <div id="select1" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </div>
+            <ul id="select_send_1" class="select_send">
+                <li>出售</li>
+                <li>出租</li>
+                <li>商铺</li>
+            </ul>
             <div class="house_content">
                 <label><span>*</span>所在商圈:</label>
                 <input type="text">
@@ -91,7 +110,7 @@
                 <p></p>
             </div>
             <div class="house_content">
-                <label>联系人:</label>
+                <label><span>*</span>联系人:</label>
                 <input type="text" placeholder="必填">
                 <p></p>
             </div>
@@ -101,19 +120,29 @@
                 <p></p>
             </div>
             <div class="house_content">
-                <label><span>*</span>房屋类型:</label>
-                <input type="text" placeholder="必填">
+                <label><span>*</span>房屋户型:</label>
+                <div id="select2" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
                 <p></p>
             </div>
+            <ul id="select_send_2" class="select_send">
+                <li>一室</li>
+                <li>两室</li>
+                <li>三室</li>
+                <li>四室</li>
+                <li>五室以上</li>
+            </ul>
             <div class="house_content">
-                <label>房屋价格:</label>
-                <input type="text">
+                <label><span>*</span>房屋总价:</label>
+                <input type="text" placeholder="必填">
             </div>
             <div class="house_img">
                 <a class="file">图片上传
                     <input type="file" name="" id="">
                 </a>
-                <img>
+                <img src="img/img2.jpg">
                 <img>
                 <img>
                 <img>
@@ -137,7 +166,7 @@
                 </div>
             </div>
             <div class="manage_content">
-                <span>展示名</span>
+                <span>所在商圈</span>
                 <div class="manage_input">
                     <input type="text" value="sfdfsds">
                     <div class="action_box">
@@ -149,7 +178,7 @@
                 </div>
             </div>
             <div class="manage_content">
-                <span>展示名</span>
+                <span>所在小区</span>
                 <div class="manage_input">
                     <input type="text" value="sfdfsds">
                     <div class="action_box">
@@ -161,7 +190,7 @@
                 </div>
             </div>
             <div class="manage_content">
-                <span>展示名</span>
+                <span>具体地址</span>
                 <div class="manage_input">
                     <input type="text" value="sfdfsds">
                     <div class="action_box">
@@ -172,6 +201,215 @@
 
                 </div>
             </div>
+            <div class="manage_content">
+                <span>联系人</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>联系方式</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>房屋类型</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>房屋面积</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>户型</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>租出否</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_img">
+                <span>图片修改</span>
+                <div class="action_img">
+                    <img src="img/img2.jpg">
+                    <img src="img/img2.jpg">
+                    <img src="img/img2.jpg">
+                    <img src="img/img2.jpg">
+                    <img src="img/img2.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="release_record">
+            <ul>
+                <li>
+                    <div class="record_content">
+                        <a>
+                            <img src="img/img2.jpg">
+                        </a>
+                        <div class="record_describe">
+                            <h3><a>西华大学某某房屋</a></h3>
+                            <div class="address">
+                                <span>小区名字</span>
+                                <span>房屋户型</span>
+                                <span>房屋面积</span>
+                            </div>
+                            <div class="detailed">
+                                <span>房屋类型</span>
+                                <span>房屋户型</span>
+                                <span>房屋发布时间</span>
+                            </div>
+                            <div class="state">
+                                <span>已售卖</span>
+                                <span>审核合格</span>
+                            </div>
+                            <div class="price">
+                                <span>150万</span><br>
+                                <span>5000/m<sup>2</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="record_content">
+                        <a>
+                            <img src="img/img2.jpg">
+                        </a>
+                        <div class="record_describe">
+                            <h3><a>西华大学某某房屋</a></h3>
+                            <div class="address">
+                                <span>小区名字</span>
+                                <span>房屋户型</span>
+                                <span>房屋面积</span>
+                            </div>
+                            <div class="detailed">
+                                <span>房屋类型</span>
+                                <span>房屋户型</span>
+                                <span>房屋发布时间</span>
+                            </div>
+                            <div class="state">
+                                <span>已售卖</span>
+                                <span>审核合格</span>
+                            </div>
+                            <div class="price">
+                                <span>150万</span><br>
+                                <span>5000/m<sup>2</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="record_content">
+                        <a>
+                            <img src="img/img2.jpg">
+                        </a>
+                        <div class="record_describe">
+                            <h3><a>西华大学某某房屋</a></h3>
+                            <div class="address">
+                                <span>小区名字</span>
+                                <span>房屋户型</span>
+                                <span>房屋面积</span>
+                            </div>
+                            <div class="detailed">
+                                <span>房屋类型</span>
+                                <span>房屋户型</span>
+                                <span>房屋发布时间</span>
+                            </div>
+                            <div class="state">
+                                <span>已售卖</span>
+                                <span>审核合格</span>
+                            </div>
+                            <div class="price">
+                                <span>150万</span><br>
+                                <span>5000/m<sup>2</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="record_content">
+                        <a>
+                            <img src="img/img2.jpg">
+                        </a>
+                        <div class="record_describe">
+                            <h3><a>西华大学某某房屋</a></h3>
+                            <div class="address">
+                                <span>小区名字</span>
+                                <span>房屋户型</span>
+                                <span>房屋面积</span>
+                            </div>
+                            <div class="detailed">
+                                <span>房屋类型</span>
+                                <span>房屋户型</span>
+                                <span>房屋发布时间</span>
+                            </div>
+                            <div class="state">
+                                <span>已售卖</span>
+                                <span>审核合格</span>
+                            </div>
+                            <div class="price">
+                                <span>150万</span><br>
+                                <span>5000/m<sup>2</sup></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="paging">
+                <a>1</a>
+                <a>下一页</a>
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="loading">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            <span>加载中请稍后...</span>
         </div>
     </div>
 </div>
@@ -190,5 +428,6 @@
 
     </div>
 </footer>
+<script type="text/javascript" src="js/person_information_js.js"></script>
 </body>
 </html>

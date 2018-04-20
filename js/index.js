@@ -18,8 +18,8 @@ $(function () {
     }
 
     //登录、注册
-    var login = $(".nav_bar_right li a")[0];
-    var register = $(".nav_bar_right li a")[1];
+    var login = $(".nav_bar_right .login_register a")[0];
+    var register = $(".nav_bar_right .login_register a")[1];
     var dialog = $(".dialog");
     var login_content = $(".login_content");
     var register_content = $(".register_content");
@@ -29,31 +29,27 @@ $(function () {
     login.onclick = function () {
         dialog.css("display", "block");
         login_content.css("display", "block");
-        $(document.body).css({
-            "overflow-y": "hidden"
-        });
+        $(document).bind("mousewheel", function (event, delta) {
+            return false;
+        })
     };
     login_cancel.click(function () {
         dialog.css("display", "none");
         login_content.css("display", "none");
-        $(document.body).css({
-            "overflow-y": "auto"
-        });
+        $(document).unbind("mousewheel");
     });
     //注册弹出框事件
     register.onclick = function () {
         dialog.css("display", "block");
         register_content.css("display", "block");
-        $(document.body).css({
-            "overflow-y": "hidden"
-        });
+        $(document).bind("mousewheel", function (event, delta) {
+            return false;
+        })
     };
     register_cancel.click(function () {
         dialog.css("display", "none");
         register_content.css("display", "none");
-        $(document.body).css({
-            "overflow-y": "auto"
-        });
+        $(document).unbind("mousewheel");
     });
     //性别选择事件
     var checkbox = $(".gender input");
@@ -77,7 +73,9 @@ $(function () {
         var password = $(".login_body input[type='password']").val();
         var login_check = $(".func input[type='checkbox']")[0].checked;
         var p = $(".login_body p");
-
+        var login_information = $(".login_information");
+        var login_register = $(".login_register");
+        var text = $(".login_information a span:last-child");
         if(account == ""){
             $(p[1]).html("账号为空");
             return;
@@ -100,12 +98,21 @@ $(function () {
             url: "http://www.xhban.com:8080/EM/user/login",
             type: "post",
             dataType: "json",
+            crossDomain: true,
             data: {
                 phone: account,
                 password: password
             },
             success: function (data) {
-                console.log(data);
+                if(data.state != 0){
+                    $(p[0]).text(data.message);
+                }else{
+                    login_register.css("display", "none");
+                    login_information.css("display", "block");
+                    text.text(account);
+                    login_cancel.click();
+                    cookie.set("phone", account, 1);
+                }
             },
             error: function (data) {
                 console.log(data.state());
@@ -172,11 +179,55 @@ $(function () {
             },
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                    $(p[0]).text(data.message);
             },
             error: function (data) {
                 console.log(data);
             }
         });
     });
+    // 设置cookie
+    var cookie = {
+        set: function (c_name, value, expiredays){
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+        },
+        get: function (name)
+        {
+            var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+            if(arr=document.cookie.match(reg))
+
+                return (arr[2]);
+            else
+                return null;
+        },
+        clear: function (name)
+        {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval=this.get(name);
+            if(cval!=null)
+                document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+        }
+    }
+    function state() {
+        var phone = cookie.get("phone");
+        var login_information = $(".login_information");
+        var login_register = $(".login_register");
+        var text = $(".login_information a span:last-child");
+        if(phone != null){
+            login_register.css("display", "none");
+            login_information.css("display", "block");
+            text.text(phone);
+        }
+        var exit = $(".login_information a:last-child");
+        exit.click(function () {
+            cookie.clear("phone");
+            login_register.css("display", "block");
+            login_information.css("display", "none");
+        });
+    }
+    state();
 });

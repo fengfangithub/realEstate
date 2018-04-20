@@ -39,8 +39,16 @@
                 <ul class="nav_bar_right">
                     <li><input class="search" type="text"></li>
                     <li class="search_icon"><i class="glyphicon glyphicon-search"></i></li>
-                    <li><a>登录</a></li>
-                    <li><a>注册</a></li>
+                    <li>
+                        <div class="login_register">
+                            <a>登录</a>
+                            <a>注册</a>
+                        </div>
+                        <div class="login_information">
+                            <a href="person_information.html"><span class="glyphicon glyphicon-user"></span><span></span></a>
+                            <a>退出</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -194,9 +202,9 @@
     <div class="login_body">
         <div>
             <p></p>
-            <input type="text" placeholder="请输入账号/手机号">
+            <input type="text" placeholder="请输入账号/手机号" value="12345678911">
             <p></p>
-            <input type="password" placeholder="请输入密码,区分大小写,不能用空格">
+            <input type="password" placeholder="请输入密码,区分大小写,不能用空格" value="123">
             <p></p>
             <div class="func">
                 <input id="check" type="checkbox" checked="checked">
@@ -247,7 +255,7 @@
                 <label><em>*</em>性别:</label>
                 <input type="checkbox" value="男"><span>男</span>
                 <input type="checkbox" value="女"><span>女</span>
-                <input type="checkbox" checked="checked"><span>不公开</span>
+                <input type="checkbox" value="" checked="checked"><span>不公开</span>
             </div>
             <p></p>
             <button>注册</button>
@@ -255,6 +263,6 @@
     </div>
 </div>
 <script type="text/javascript" src="js/index_sf.js"></script>
-<script type="text/javascript" src="js/header_footer_js.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
