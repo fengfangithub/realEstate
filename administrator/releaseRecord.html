@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>用户发布记录</title>
+    <meta charset="utf-8">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini rtl">
+<!-- Navbar-->
+<header class="app-header"><a class="app-header__logo" href="allUser.html">EM</a>
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+        <li class="app-search">
+            <input class="app-search__input" type="search" placeholder="搜索">
+            <button class="app-search__button"><i class="fa fa-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+            <ul class="dropdown-menu settings-menu dropdown-menu-right">
+                <li><a class="dropdown-item" href="login.html"><i class="fa fa-sign-out fa-lg"></i>登录</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+    <div class="app-sidebar__user"><img style="width: 48px;height: 48px" class="app-sidebar__user-avatar" src="image/adminiImage.png" alt="admini Image">
+        <div>
+            <p class="app-sidebar__user-name">administrator</p>
+        </div>
+    </div>
+    <ul class="app-menu">
+        <li>
+        <a style="border: none" class="app-menu__item active" href="allUser.html">
+            <i class="app-menu__icon fa fa-pie-chart"></i>
+            <span class="app-menu__label" style="font-size: 0.9em">查询所有的用户</span>
+        </a>
+    </li>
+        <li>
+            <a class="app-menu__item active" href="releaseRecord.html">
+                <i class="app-menu__icon fa fa-pie-chart"></i>
+                <span class="app-menu__label" style="font-size: 0.9em">用户发布记录</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item active" href="transactionRecord.html" style="border: none">
+                <i class="app-menu__icon fa fa-pie-chart"></i>
+                <span class="app-menu__label" style="font-size: 0.9em">用户交易记录</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item active" href="notAudit.html" style="border: none">
+                <i class="app-menu__icon fa fa-pie-chart"></i>
+                <span class="app-menu__label" style="font-size: 0.9em">未审核房屋</span>
+            </a>
+        </li>
+    </ul>
+</aside>
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i>发布房屋信息表</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item active"><a href="#">发布房屋</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="dataTables_length" id="sampleTable_length">
+                                    <label>
+                                        展示
+                                        <select name="sampleTable_length" aria-controls="sampleTable" class="form-control form-control-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                        行
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table class="table table-hover table-bordered" id="sampleTable" style="text-align: center">
+                                <thead>
+                                <tr>
+                                    <th>房屋名</th>
+                                    <th>类型</th>
+                                    <th>商业圈</th>
+                                    <th>小区</th>
+                                    <th>地址</th>
+                                    <th>面积</th>
+                                    <th>户型</th>
+                                    <th>交易状态</th>
+                                    <th>审核状态</th>
+                                    <th>联系人</th>
+                                    <th>联系方式</th>
+                                    <th>价格</th>
+                                    <th>发布时间</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info" id="sampleTable_info" role="status" aria-live="polite">展示多少行</div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="sampleTable_paginate">
+                                    <ul class="pagination">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Essential javascripts for application to work-->
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<!-- The javascript plugin to display page loading on top-->
+<script src="js/plugins/pace.min.js"></script>
+<script type="text/javascript" src="js/releaseRecord.js"></script>
+
+<!-- Google analytics script-->
+<script type="text/javascript">
+    if(document.location.hostname == 'pratikborsadiya.in') {
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-72504830-1', 'auto');
+        ga('send', 'pageview');
+    }
+</script>
+</body>
+</html>

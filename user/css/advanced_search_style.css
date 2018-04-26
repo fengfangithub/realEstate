@@ -1,0 +1,382 @@
+body html{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    padding: 0!important;
+    margin: 0!important;
+    list-style: none;
+}
+a{
+    cursor: pointer;
+}
+.wrapper_index header{
+    width: 100%;
+    height: 38px;
+    background-color: #394043;
+}
+.contain{
+    width: 1150px;
+    height: 100%;
+    margin: 0 auto;
+}
+.contain ul a{
+    text-decoration: none!important;
+}
+.contain ul li{
+    float: left;
+    margin-right: 30px;
+    line-height: 38px;
+}
+.contain ul li a{
+    color: #898782;
+}
+.contain ul li a:hover{
+    color: #ffffff;
+}
+.person{
+    width: 200px;
+    height: 100%;
+    float: right;
+    line-height: 38px;
+    color: #898782;
+    font-size: 0.9em;
+    text-align: end;
+}
+.person span{
+    margin-right: 10px;
+}
+.person a{
+    color: #f9f9f9;
+    margin-right: 20px;
+}
+.person a:hover{
+    color: #f9f9f9;
+}
+
+/*搜索功能区*/
+.header{
+    width: 100%;
+    height: 154px;
+    padding: 26px 0;
+    background-color: #f5f5f6;
+}
+.header .menu{
+    width: 1150px;
+    margin: 0 auto;
+    height: 28px;
+}
+.menu>a{
+    display: inline-block;
+    width: 100px;
+    float: left;
+    height: 32px;
+    background-color: #1c639d;
+}
+.menu_ul{
+    height: 100%;
+    margin-left: 50px;
+    float: left;
+}
+.menu ul li{
+    float: left;
+    margin-right: 30px;
+    line-height: 28px;
+    font-size: 1.14em;
+}
+.menu ul li a{
+    color: #394043;
+}
+.menu_ul li a:hover{
+    text-decoration: none;
+}
+.search{
+    width: 1150px;
+    margin: 0 auto;
+    height: 28px;
+    margin-top: 25px;
+    height: 45px;
+}
+.input{
+    display: inline-block;
+    height: 45px;
+    position: relative;
+    background: #ffffff;
+    width: 710px;
+    box-shadow: 1px 1px 1px #e6e6e6;
+}
+.input input{
+    width: 660px;
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 5px 20px;
+    font-size: 1.1em;
+    float: left;
+}
+.input button{
+    width: 50px;
+    height: 100%;
+    border: none;
+    float: left;
+    outline: none;
+    background: #ffffff;
+    font-size: 1.3em;
+    color: #919191;
+}
+/*搜索选择区*/
+.check{
+    width: 1150px;
+    height: auto;
+    margin: 0 auto;
+    padding: 14px 25px;
+    margin-top: 26px;
+    background-color: #efefef;
+}
+.check_content{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.check_box{
+    width: 94%;
+    height: 100%;
+    float: right;
+}
+.check_box_content{
+    width: 110px;
+    margin-right: 35px;
+    float: left;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.check_box_content input{
+    width: 15px;
+    height: 15px;
+    margin: 0!important;
+}
+.check_box_content span{
+    margin-left: 7px;
+}
+.check_custom{
+    float: left;
+    height: 100%;
+    width: auto;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+}
+.check_custom span{
+    display: block;
+    width: 10px;
+    height:1px;
+    background-color: #615f5c;
+    float: left;
+    margin: 0 8px 0 8px;
+}
+.check_custom input[type="text"]{
+    width: 35px;
+    height: 22px;
+    float: left;
+}
+.check_custom a{
+    display: block;
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 10px;
+    background-color: #5e5e5e;
+    color: #ffffff;
+    font-size: 0.9em;
+}
+.check_custom a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+/*搜索结果区*/
+.show_bar{
+    width: 1150px;
+    height: 45px;
+    margin: 0px auto;
+    margin-top: 50px;
+    border-bottom: 2px solid #3cb570;
+}
+.show_bar a{
+    display: block;
+    width: 80px;
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 45px;
+}
+.a_click{
+    color: #ffffff;
+    background-color: #3cb570;
+}
+.a_click:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+.a_noclick{
+    color: #5e5e5e;
+    background-color: #ffffff;
+}
+.a_noclick:hover{
+    text-decoration: none;
+    color: #5e5e5e;
+}
+
+.show_content{
+    width: 1150px;
+    height: 770px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #f9f9f9;
+}
+.content{
+    width: 1150px;
+    height: 160px;
+    position: relative;
+    cursor: pointer;
+}
+.content:hover{
+    background-color: #fffce7;
+}
+.content_img{
+    width: 130px;
+    height: 100px;
+    background-color: #615f5c;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.content_img img{
+    width: 100%;
+    height: 100%;
+}
+.content_show{
+    position: absolute;
+    width: 423px;
+    height: 140px;
+    left: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 140px;
+}
+.content_show a{
+    cursor: pointer;
+    line-height: 20px;
+    color: #1c639d;
+    font-size: 1.3em;
+    margin-top: 15px;
+}
+.content_show h4{
+    margin: 15px 0 10px 0;
+    font-size: 1.2em;
+}
+.content_show div{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.content_show div>span{
+    float: left;
+    margin: 0 5px;
+    color: #3d3d3d;
+}
+.segmentation{
+    width: 1px;
+    height: 60%;
+    background-color: #646464;
+    display: block;
+    margin: 0 10px!important;
+}
+.content_price{
+    position: absolute;
+    width: 161px;
+    height: 41px;
+    right: 10px;
+    top: 20px;
+    text-align: end;
+}
+.content_price span{
+    font-size: 1.5em;
+    margin-right: 10px;
+    color: red;
+}
+.content_are{
+    position: absolute;
+    width: 161px;
+    height: 41px;
+    right: 10px;
+    top: 61px;
+    text-align: end;
+}
+.content_are span {
+    font-size: 1.3em;
+    margin-right: 10px;
+    color: #1c1c1c;
+    font-weight: bold;
+}
+.paging{
+    width: 100%;
+    height: 40px;
+}
+.paging a{
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: left;
+    color: #000;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #a1a1a1;
+    font-size: 0.8em;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.paging a:hover{
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+.paging a:last-child{
+    display: block;
+    width: 50px;
+    height: 40px;
+    float: left;
+    color: #000;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid #a1a1a1;
+    font-size: 0.8em;
+    margin-right: 10px;
+    font-weight: bold;
+}
+/*尾部*/
+footer{
+    margin-top: 58px;
+}
+.footer{
+    width: 1000px;
+    text-align: center;
+    height: 100px;
+    margin: 0 auto;
+}
+.footer ul{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+.footer ul li{
+    float: left;
+    margin-right: 10px;
+}
+.footer ul li a{
+    color: #919191;
+}
+.footer p{
+    color: #919191;
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <link rel="stylesheet" type="text/css" href="css/person_information_style.css">
+    <link rel="stylesheet" type="text/css" href="css/animation_style.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="tool/jquery-3.3.1.js"></script>
+</head>
+<body>
+<div class="wrapper_index">
+    <header>
+        <div class="navigation">
+            <div class="logo"></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a>新房</a></li>
+                    <li><a>二手房</a></li>
+                    <li><a>租房</a></li>
+                    <li><a>商铺</a></li>
+                    <li><a>移动APP</a></li>
+                    <li><a>附近</a></li>
+                </ul>
+                <div class="person">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <a></a>
+                    <a>退出</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="user_information">
+    <div class="left">
+        <div class="person_img"></div>
+        <div class="person_name">欢迎你，xxxxx</div>
+        <ul>
+            <li><a>个人信息</a></li>
+            <li><a>发布房屋</a></li>
+            <li><a>发布记录</a></li>
+            <li><a>售出记录</a></li>
+            <li><a>购房记录</a></li>
+        </ul>
+    </div>
+    <div class="right">
+        <header class="header"></header>
+        <div class="person_information">
+            <div class="header_menu">
+                <a class="header_menu_a">个人信息</a>
+                <a>修改信息</a>
+                <a>修改密码</a>
+            </div>
+            <div class="menu_person_information">
+                <div class="head_portrait"></div>
+                <div class="content">
+                    <label>昵称:</label>
+                    <input type="text" readonly="readonly" value="fengfan">
+                </div>
+                <div class="content">
+                    <label>电话号码:</label>
+                    <input type="text" readonly="readonly" value="15202849186">
+                </div>
+                <div class="content">
+                    <label>性别:</label>
+                    <input type="text" readonly="readonly" value="男">
+                </div>
+                <div class="content">
+                    <label>地址:</label>
+                    <input type="text" readonly="readonly" value="四川省郫都区红光镇西华大学">
+                </div>
+            </div>
+            <div class="modify_information">
+                <label>昵称：</label><input type="text"><br>
+                <label>性别：</label><input type="text"><br>
+                <label>地址：</label><input type="text"><br>
+                <button>修改</button>
+            </div>
+            <div class="modify_password">
+                <label>原密码：</label><input type="text"><br>
+                <label>新密码：</label><input type="text"><br>
+                <label>再次输入：</label><input type="text"><br>
+                <button>修改</button>
+            </div>
+        </div>
+        <div class="publish_house">
+            <div class="house_content">
+                <label><span>*</span>展示名:</label>
+                <input type="text" placeholder="必填" value="15fd">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>发布类型:</label>
+                <div id="select1" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <p></p>
+            </div>
+            <ul id="select_send_1" class="select_send">
+                <li>出售</li>
+                <li>出租</li>
+                <li>商铺</li>
+            </ul>
+            <div class="house_content">
+                <label><span>*</span>所在商圈:</label>
+                <input type="text" value="df">
+            </div>
+            <div class="house_content">
+                <label><span>*</span>所在小区:</label>
+                <input type="text" placeholder="必填" value="fefe">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>具体地址:</label>
+                <input type="text" placeholder="必填" value="eff">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>房屋面积:</label>
+                <input type="text" value="205">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>联系人:</label>
+                <input type="text" placeholder="必填" value="156165">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>联系方式:</label>
+                <input type="text" placeholder="必填" value="15616">
+                <p></p>
+            </div>
+            <div class="house_content">
+                <label><span>*</span>房屋户型:</label>
+                <div id="select2" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+                <p></p>
+            </div>
+            <ul id="select_send_2" class="select_send">
+                <li>一室</li>
+                <li>两室</li>
+                <li>三室</li>
+                <li>四室</li>
+                <li>五室以上</li>
+            </ul>
+            <div class="house_content">
+                <label><span>*</span>房屋总价:</label>
+                <input type="text" placeholder="必填" value="6516">
+            </div>
+            <div class="house_img">
+                <a class="file">图片上传
+                    <form id="form_img">
+                        <input name="file" id="file" type="file" multiple="multiple" accept="image/*/">
+                    </form>
+                </a>
+                </a>
+                <img>
+                <img>
+                <img>
+                <img>
+                <img>
+            </div>
+            <div class="button">
+                <button>发布</button>
+            </div>
+        </div>
+        <div id="release" class="record">
+            <ul>
+            </ul>
+            <div class="paging">
+                <a>下一页</a>
+            </div>
+        </div>
+        <div id="trading" class="record">
+            <ul>
+            </ul>
+            <div class="paging">
+                <a>下一页</a>
+            </div>
+        </div>
+        <div></div>
+        <div class="manage_house">
+            <div class="manage_content">
+                <span>展示名</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>所在商圈</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>所在小区</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>具体地址</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>联系人</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>联系方式</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>房屋类型</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>房屋面积</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>户型</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_content">
+                <span>租出否</span>
+                <div class="manage_input">
+                    <input type="text" value="sfdfsds">
+                    <div class="action_box">
+                        <a>
+                            <span class="glyphicon glyphicon-pencil"></span>修改
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="manage_img">
+                <span>图片修改</span>
+                <div class="action_img">
+                    <div>
+                        <img src="img/img2.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loading">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            <span>加载中请稍后...</span>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="footer">
+        <ul>
+            <li><a>关于我们</a></li>
+            <li><a>联系我们</a></li>
+            <li><a>用户协议</a></li>
+            <li><a>最新问答</a></li>
+            <li><a>友情链接</a></li>
+            <li><a>隐私协议</a></li>
+            <li><a>经营许可</a></li>
+        </ul>
+        <p>2018-2020 四川省xxx大学某某公司<br>违法和不良信息举报电话：010-56318764 举报邮箱：jubao@fang.com<br><span>24小时热线 400-5041-11</span></p>
+
+    </div>
+</footer>
+<script type="text/javascript" src="js/person_information_js.js"></script>
+</body>
+</html>
