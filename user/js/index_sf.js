@@ -8,7 +8,6 @@ $(function () {
     var index = 1;
     var animated = false;
     var timer;
-
     $(window).resize(function () {
         h = parseInt($(document.body).width());
     });
@@ -71,7 +70,7 @@ $(function () {
 
     prev.click(function () {
         if(index == 1){
-            index = 1;
+            index = 3;
         }else{
             index -= 1;
         }
@@ -98,7 +97,6 @@ $(function () {
     });
     contain.mouseout(function () {
         play();
-    })
-
+    });
     play();
 });

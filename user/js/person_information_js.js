@@ -22,7 +22,6 @@ $(function () {
     }
 
 
-
     //页面加载动画
     jump();
     function display() {
@@ -32,11 +31,22 @@ $(function () {
         $(div[6]).css("display", "block");
     }
     display();
-
-    if(page_id == 0){
-        person_information_show();
-        modify_information();
-        modify_password();
+    dataLoad("http://www.xhban.com:8080/EM/user/lookinfo", {}, personInformationBack);
+    function personInformationBack(data){
+        var person_name = $(".person_name");
+        var person_span = $(".person a span:last-child");
+        person_name.text("欢迎您，"+data.resultData[0].name);
+        var person_exit = $(".person a:last-child");
+        $(person_span[0]).text(data.resultData[0].phone);
+        person_exit.click(function () {
+            dataLoad("http://www.xhban.com:8080/EM/user/logout",null,null);
+            window.location.href = "index.html";
+        });
+        if(page_id == 0 && data.state == 0){
+            person_information_show(data);
+            modify_information();
+            modify_password();
+        }
     }
     if(page_id == 1){
         publish_house();
@@ -44,33 +54,36 @@ $(function () {
     if(page_id == 2 && manger_id == null){
         releaseRecord();
     }
-    if(page_id == 2 && manger_id != null){
-        modificationHouse();
+    if (page_id ==2 && manger_id !=null){
+        dataLoad("http://www.xhban.com:8080/EM/user/lookhouseinfo",{house_id: manger_id},Back);
+        function Back(data) {
+            if (data.state == "查询成功") {
+                modificationHouse(data.resultData[0]);
+            }
+        }
     }
     if(page_id == 3){
         tradingRecord();
+    }
+    if(page_id == 4){
+        buyRecord();
     }
 
 
     //页面个人数据显示
     //个人信息
-    function person_information_show() {
-        dataLoad("http://www.xhban.com:8080/EM/user/lookinfo", {}, personInformationBack);
-        function personInformationBack(person) {
-            if(person.state == 0){
-                var person_information_input = $(".menu_person_information .content input");
-                $(div[6]).css("display", "none");
-                $(div[page_id]).css("display", "block");
-                $(person_information_input[0]).val(person.resultData[0].name);
-                $(person_information_input[1]).val(person.resultData[0].phone);
-                if(person.resultData[0].sex == ""){
-                    $(person_information_input[2]).val("不公开");
-                }else{
-                    $(person_information_input[2]).val(person.resultData[0].sex);
-                }
-                $(person_information_input[3]).val(person.resultData[0].address);
-            }
+    function person_information_show(person) {
+        var person_information_input = $(".menu_person_information .content input");
+        $(div[6]).css("display", "none");
+        $(div[page_id]).css("display", "block");
+        $(person_information_input[0]).val(person.resultData[0].name);
+        $(person_information_input[1]).val(person.resultData[0].phone);
+        if(person.resultData[0].sex == ""){
+            $(person_information_input[2]).val("不公开");
+        }else{
+            $(person_information_input[2]).val(person.resultData[0].sex);
         }
+        $(person_information_input[3]).val(person.resultData[0].address);
     }
     //个人信息修改
     function modify_information() {
@@ -153,63 +166,67 @@ $(function () {
             };
             dataLoad("http://www.xhban.com:8080/EM/user/relasehouse", data, publishHouseBack);
             function publishHouseBack(data) {
-                var form_img = $("#form_img")[0];
-                var form_data = new FormData(form_img);
-                form_data.append("house_id", data.resultData[0].id);
-                form_data.append("image_type", "1");
-                $.ajax({
-                    url: "http://www.xhban.com:8080/EM/user/uploadimage",
-                    type: "post",
-                    async: true,
-                    cache: false,
-                    data: form_data,
-                    //必须false才会避开jQuery对 formdata 的默认处理
-                    // XMLHttpRequest会对 formdata 进行正确的处理
-                    processData: false,
-                    //必须false才会自动加上正确的Content-Type
-                    contentType: false,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    success: function (imageData) {
-                        console.log(imageData);
-                        if(data.state == 0 && imageData.state == 0){
-                            window.alert("发布成功");
-                            window.location.href = "person_information.html?page_id=1";
-                        }else if(data.state ==0 && imageData.state != 0){
-                            window.alert("房屋发布成功，图片上传失败");
-                            window.location.href = "person_information.html?page_id=1";
-                        } else{
-                            window.alert("发布失败");
-                            window.location.href = "person_information.html?page_id=1";
+                if(data.state != 0){
+                    window.alert("发布失败");
+                    window.location.href = window.location.href;
+                }else{
+                    var form_img = $("#form_img")[0];
+                    var form_data = new FormData(form_img);
+                    form_data.append("house_id", data.resultData[0].id);
+                    form_data.append("image_type", "1");
+                    $.ajax({
+                        url: "http://www.xhban.com:8080/EM/user/uploadimage",
+                        type: "post",
+                        async: true,
+                        cache: false,
+                        data: form_data,
+                        //必须false才会避开jQuery对 formdata 的默认处理
+                        // XMLHttpRequest会对 formdata 进行正确的处理
+                        processData: false,
+                        //必须false才会自动加上正确的Content-Type
+                        contentType: false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        success: function (imageData) {
+                            console.log(imageData);
+                            if(data.state == 0 && imageData.state == 0){
+                                window.alert("发布成功");
+                                window.location.href = "person_information.html?page_id=1";
+                            }else if(data.state ==0 && imageData.state != 0){
+                                window.alert("房屋发布成功，图片上传失败");
+                                window.location.href = "person_information.html?page_id=1";
+                            } else{
+                                window.alert("发布失败");
+                                window.location.href = "person_information.html?page_id=1";
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
             }
         });
     }
-
 
     //展示发布房屋信息
     function releaseRecord() {
         dataLoad("http://www.xhban.com:8080/EM/user/listmyhouses", null, releaseRecordBack);
         function releaseRecordBack(data) {
-            if(data.state == 0){
+            if (data.state == 0) {
                 $(div[6]).css("display", "none");
                 $(div[page_id]).css("display", "block");
                 var ul_div = $("#release ul");
-                var numberPage = Math.ceil(data.resultData.length/5);
+                var numberPage = Math.ceil(data.resultData.length / 5);
+                //添加分页a标签
                 var paging = $("#release .paging");
-                for(var i =numberPage ;i >= 1; i--){
-                    paging.prepend("<a>"+ i +"</a>");
+                paging.append("<a class='next_previous'>上一页</a>");
+                for (var i = 1; i <= numberPage; i++) {
+                    paging.append("<a class='paging_a'>" + i + "</a>");
                 }
-                page(numberPage);
-                var a = $("#release .paging a");
-                a.css("background-color", "#fff");
-                $(a[num_page]).css("background-color", "#eaeaea");
-
-                for(var j = parseInt(num_page)*5; j < (parseInt(num_page)+1)*5 && j < data.resultData.length; j++) {
+                paging.append("<a class='next_previous'>下一页</a>")
+                //数据加载
+                for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
                     var house_data = data.resultData[j];
                     var house_id = house_data.id;//房屋id
                     var name = house_data.name;//房屋名字
@@ -252,8 +269,8 @@ $(function () {
                     var span = $(".record_content>span");
                     var record_menu = $(".record_menu");
                     record_menu.css("display", "none");
-                    $(span[j%5]).click(function () {
-                        var num = j%5;
+                    $(span[j % 5]).click(function () {
+                        var num = j % 5;
                         return function () {
                             if ($(record_menu[num]).css("display") == "none") {
                                 $(record_menu[num]).css("display", "block");
@@ -262,8 +279,8 @@ $(function () {
                             }
                         }
                     }());
-                    $(record_menu[j%5]).mouseleave(function () {
-                        var num = j%5;
+                    $(record_menu[j % 5]).mouseleave(function () {
+                        var num = j % 5;
                         return function () {
                             if ($(record_menu[num]).css("display") == "block") {
                                 $(record_menu[num]).css("display", "none");
@@ -272,19 +289,20 @@ $(function () {
                     }());
                     //功能点击事件
                     var ul = $(".record_menu ul");
-                    var li = $(ul[j%5]).find("li");
+                    var li = $(ul[j % 5]).find("li");
                     $(li[0]).click(function () {
                         var hd = house_id;
-                        return function(){
+                        return function () {
                             var url = "person_information.html?page_id=" + page_id + "&manger_id=" + hd;
                             window.location.href = url;
                         }
                     }());
                     $(li[1]).click(function () {
                         var hd = house_id;
-                        return function(){
+                        return function () {
                             dataLoad("http://www.xhban.com:8080/EM/user/deletehouse", {house_id: hd}, deleteHouseBack);
                         }
+
                         function deleteHouseBack(data) {
                             window.alert(data.message)
                             window.location.href = window.location.href;
@@ -292,84 +310,287 @@ $(function () {
                     }());
                     $(li[2]).click(function () {
                         var hd = house_id;
-                        return function(){
-                            window.location.href = "house_details.html?house_id="+hd;
+                        return function () {
+                            var k;
+                            if(kind == "出售"){
+                                k = 0;
+                            }else if(kind == "出租"){
+                                k = 1;
+                            }else{
+                                k = 2;
+                            }
+                            window.location.href = "house_details.html?house_id=" + hd+"&kind="+k;
                         }
                     }());
                 }
+                //分页点击事件
+                var a = $("#release .paging a");
+                a.css("background-color", "#fff");
+                $(a[parseInt(num_page)+1]).css("background-color", "#eaeaea");
+                for (var i = 1; i < a.length - 1; i++) {
+                    $(a[i]).click(function () {
+                        var num = i - 1;
+                        return function () {
+                            var url = "person_information.html?page_id=" + page_id + "&num_page=" + num;
+                            window.location.href = url;
+                        }
+                    }());
+                }
+                $(a[0]).click(function () {
+                    if (num_page - 1 >= 0) {
+                        var previous = parseInt(num_page) - 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + previous;
+                        window.location.href = url;
+                    }
+                });
+                $(a[a.length - 1]).click(function () {
+                    if (num_page + 1 <= numberPage) {
+                        var next = parseInt(num_page) + 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
+                        window.location.href = url;
+                    }
+                });
             }
         }
     }
 
     //房屋信息修改
-    function modificationHouse() {
+    function modificationHouse(house_data) {;
         $(div[6]).css("display", "none");
         $(div[5]).css("display", "block");
+        var input = $(".manage_input input");
+        var action_img = $(".action_img");
+        $(input[0]).val(house_data.name);
+        $(input[1]).val(house_data.area);
+        $(input[2]).val(house_data.village);
+        $(input[3]).val(house_data.address);
+        $(input[4]).val(house_data.contact);
+        $(input[5]).val(house_data.phone);
+        $(input[6]).val(house_data.kind);
+        $(input[7]).val(house_data.size);
+        $(input[8]).val(house_data.type);
+        $(input[9]).val(house_data.price);
+        imgdelete(house_data);
+        function imgdelete(house_data){
+            dataLoad("http://www.xhban.com:8080/EM/user/listimages",{house_id: house_data.id},actionImgBack);
+            function actionImgBack(data) {
+                for(var i = 0; i < data.resultData.length; i++){
+                    action_img.append("<div><span class='tglyphicon glyphicon-minus'></span><img src='"+data.resultData[i].path+"'></div>")
+                }
+                var img_span = $(".action_img span");
+                for(var i = 0; i < img_span.length; i++){
+                    $(img_span[i]).click(function () {
+                        var n = i;
+                        return function () {
+                            dataLoad("http://www.xhban.com:8080/EM/user/deleteimage",{house_id: house_data.id,image_id:data.resultData[n].id},imgBack);
+                        };
+                    }());
+                }
+            }
+            function imgBack(data){
+                if(data.state == 0){
+                    action_img.html("");
+                    modificationHouse(house_data);
+                }
+            }
+        }
+        var button = $(".manger_button");
+        button.click(function () {
+            var name = $(input[0]).val();
+            var area = $(input[1]).val();
+            var village = $(input[2]).val();
+            var address = $(input[3]).val();
+            var contact = $(input[4]).val();
+            var phone = $(input[5]).val();
+            var kind = $(input[6]).val();
+            var size = $(input[7]).val();
+            var type = $(input[8]).val();
+            var price = $(input[9]).val();
+            console.log(house_data.id);
+            dataLoad("http://www.xhban.com:8080/EM/user/updatehouse",{id:house_data.id,price:price,name:name,area: area,village:village,address:address,contact:contact,phone:phone,kind:kind,size:size,type:type},mangerBack);
+            function mangerBack(data) {
+                window.alert(data.message);
+                window.location.href = window.location.href;
+            }
+        });
     }
 
-    //展示交易记录
+    //展示售出记录
     function tradingRecord() {
-        dataLoad("http://www.xhban.com:8080/EM/user/listtradeinfos",null, tradingRecordBack);
-        function tradingRecordBack(data){
-            if(data.state == 0){
-                console.log(data);
+        dataLoad("http://www.xhban.com:8080/EM/user/listsellinfos", null, tradingRecord);
+        function tradingRecord(data) {
+            console.log(data);
+            if (data.state == 0) {
                 $(div[6]).css("display", "none");
                 $(div[page_id]).css("display", "block");
                 var ul_div = $("#trading ul");
-                var numberPage = Math.ceil(data.resultData.length/5);
+                var numberPage = Math.ceil(data.resultData.length / 5);
+                //添加分页a标签
                 var paging = $("#trading .paging");
-                for(var i = numberPage; i >= 1; i--){
-                    paging.prepend("<a>"+ i +"</a>");
+                paging.append("<a class='next_previous'>上一页</a>");
+                for (var i = 1; i <= numberPage; i++) {
+                    paging.append("<a class='paging_a'>" + i + "</a>");
                 }
-                page(numberPage);
-                var a = $("#trading .paging a");
-                a.css("background-color", "#fff");
-                $(a[num_page]).css("background-color", "#eaeaea");
-                for(var j = parseInt(num_page)*5; j < (parseInt(num_page)+1)*5 && j < data.resultData.length; j++){
-                    var house_data= data.resultData[j];
+                paging.append("<a class='next_previous'>下一页</a>");
+                //数据加载
+                for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
+                    var house_data = data.resultData[j].house;
+                    var buyer_data = data.resultData[j].buyer;
+                    var seller_data = data.resultData[j].seller;
+
                     var house_id = house_data.id;//房屋id
                     var name = house_data.name;//房屋名字
                     var kind = house_data.kind;//房屋类型
                     var village = house_data.village;//小区
                     var size = house_data.size;//大小
                     var type = house_data.type;// 户型
-                    var time = house_data.time.slice(0,9);//时间
+                    var time = house_data.time.slice(0, 9);//时间
                     var price = house_data.price;//价格
                     var traded;//是否售出
                     var img_path = house_data.image;
-                    if(house_data == true){
+                    if (house_data == true) {
                         traded = "已售卖";
-                    }else{
+                    } else {
                         traded = "未售卖";
                     }
                     var qualified;
-                    if(house_data.qualified == true){
-                        qualified = "通过审核";
-                    }else{
-                        qualified = "未过审核";
+                    if (house_data.qualified == true) {
+                        qualified = "审核通过";
+                    } else {
+                        qualified = "审核中";
                     }
                     ul_div.append(
                         "<li>" +
                         "<div class='record_content'>" +
-                        "<a><img src='"+img_path+"'></a>" +
+                        "<a><img src='" + img_path + "'></a>" +
                         "<div class='record_describe'>" +
-                        "<h3><a>"+name+"</a></h3>" +
-                        "<div class='address'><span>"+village+"</span><span>"+kind+"</span><span>"+size+"</span></div>" +
-                        "<div class='detailed'><span>"+type+"</span><span>"+kind+"</span><span>"+time+"</span></div>" +
-                        "<div class='state'><span>"+traded+"</span><span>"+qualified+"</span></div>" +
-                        "<div class='price'><span>"+price+"万</span><br><span>"+Math.ceil(price/size)+"万/m<sup>2</sup></span></div>" +
+                        "<h3><a>" + name + "</a></h3>" +
+                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size + "</span></div>" +
+                        "<div class='detailed'><span>" + type + "</span><span>" + kind + "</span><span>" + time + "</span></div>" +
+                        "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
+                        "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
                         "</div>" +
-                        "<button class='modify_button'>修改</button>"+
                         "</div>" +
                         "</li>");
                 }
+                //分页点击事件
+                var a = $("#trading .paging a");
+                a.css("background-color", "#fff");
+                $(a[parseInt(num_page)+1]).css("background-color", "#eaeaea");
+                for (var i = 1; i < a.length - 1; i++) {
+                    $(a[i]).click(function () {
+                        var num = i - 1;
+                        return function () {
+                            var url = "person_information.html?page_id=" + page_id + "&num_page=" + num;
+                            window.location.href = url;
+                        }
+                    }());
+                }
+                $(a[0]).click(function () {
+                    if (num_page - 1 >= 0) {
+                        var previous = parseInt(num_page) - 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + previous;
+                        window.location.href = url;
+                    }
+                });
+                $(a[a.length - 1]).click(function () {
+                    if (num_page + 1 <= numberPage) {
+                        var next = parseInt(num_page) + 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
+                        window.location.href = url;
+                    }
+                });
             }
         }
     }
 
+    //展示购买记录
+    function buyRecord() {
+        dataLoad("http://www.xhban.com:8080/EM/user/listbuyinfos", null, tradingRecord);
+        function tradingRecord(data) {
+            if (data.state == 0) {
+                $(div[6]).css("display", "none");
+                $(div[page_id]).css("display", "block");
+                var ul_div = $("#buy ul");
+                var numberPage = Math.ceil(data.resultData.length / 5);
+                //添加分页a标签
+                var paging = $("#buy .paging");
+                paging.append("<a class='next_previous'>上一页</a>");
+                for (var i = 1; i <= numberPage; i++) {
+                    paging.append("<a class='paging_a'>" + i + "</a>");
+                }
+                paging.append("<a class='next_previous'>下一页</a>")
+                //数据加载
+                for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
+                    var house_data = data.resultData[j].house;
+                    var buyer_data = data.resultData[j].buyer;
+                    var seller_data = data.resultData[j].seller;
 
-
-
+                    var house_id = house_data.id;//房屋id
+                    var name = house_data.name;//房屋名字
+                    var kind = house_data.kind;//房屋类型
+                    var village = house_data.village;//小区
+                    var size = house_data.size;//大小
+                    var type = house_data.type;// 户型
+                    var time = house_data.time.slice(0, 9);//时间
+                    var price = house_data.price;//价格
+                    var traded;//是否售出
+                    var img_path = house_data.image;
+                    if (house_data == true) {
+                        traded = "已售卖";
+                    } else {
+                        traded = "未售卖";
+                    }
+                    var qualified;
+                    if (house_data.qualified == true) {
+                        qualified = "审核通过";
+                    } else {
+                        qualified = "审核中";
+                    }
+                    ul_div.append(
+                        "<li>" +
+                        "<div class='record_content'>" +
+                        "<a><img src='" + img_path + "'></a>" +
+                        "<div class='record_describe'>" +
+                        "<h3><a>" + name + "</a></h3>" +
+                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size + "</span></div>" +
+                        "<div class='detailed'><span>" + type + "</span><span>" + kind + "</span><span>" + time + "</span></div>" +
+                        "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
+                        "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</li>");
+                }
+                //分页点击事件
+                var a = $("#buy .paging a");
+                a.css("background-color", "#fff");
+                $(a[parseInt(num_page)+1]).css("background-color", "#eaeaea");
+                for (var i = 1; i < a.length - 1; i++) {
+                    $(a[i]).click(function () {
+                        var num = i - 1;
+                        return function () {
+                            var url = "person_information.html?page_id=" + page_id + "&num_page=" + num;
+                            window.location.href = url;
+                        }
+                    }());
+                }
+                $(a[0]).click(function () {
+                    if (num_page - 1 >= 0) {
+                        var previous = parseInt(num_page) - 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + previous;
+                        window.location.href = url;
+                    }
+                });
+                $(a[a.length - 1]).click(function () {
+                    if (num_page + 1 <= numberPage) {
+                        var next = parseInt(num_page) + 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
+                        window.location.href = url;
+                    }
+                });
+            }
+        }
+    }
 
     //页面跳转点击事件
     function jump() {
@@ -397,26 +618,8 @@ $(function () {
             }());
         }
     }
-    function page(n) {
-        var a = $(".paging a");
-        for(var i = 0; i < a.length - 1; i++){
-            $(a[i]).click(function () {
-                var num = i;
-                return function () {
-                    var url = "person_information.html?page_id=" + page_id + "&num_page=" + num;
-                    window.location.href = url;
-                }
-            }());
-        }
-        a[a.length-1].click(function () {
-            if(num_page+1 <= n){
-                var url = "person_information.html?page_id=" + page_id + "&num_page=" + num_page+1;
-                window.location.href = url;
-            }
-        });
-    }
 
-    //页面数据加载
+    //页面数据下载
     function dataLoad(url, data, callback) {
         $.ajax({
             url: url,
@@ -449,7 +652,6 @@ $(function () {
             return null;
         }
     }
-
 
     //下拉列表
     var selectText = $("#select1 input");

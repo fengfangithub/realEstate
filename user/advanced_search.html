@@ -12,11 +12,18 @@
     <header>
         <div class="contain">
             <ul>
-                <li><a>首页</a></li>
-                <li><a>新房</a></li>
-                <li><a>二手房</a></li>
-                <li><a>租房</a></li>
-                <li><a>商铺</a></li>
+                <li>
+                    <a href="index.html">首页<span></span></a>
+                </li>
+                <li>
+                    <a href="advanced_search.html?kind=0" data-kind="出售">新房<span></span></a>
+                </li>
+                <li>
+                    <a href="advanced_search.html?kind=1" data-kind="出租">租房<span></span></a>
+                </li>
+                <li>
+                    <a href="advanced_search.html?kind=2" data-kind="商铺">商铺<span></span></a>
+                </li>
                 <li><a>移动APP</a></li>
                 <li><a>附近</a></li>
             </ul>
@@ -35,8 +42,7 @@
             <div class="menu_ul">
                 <ul>
                     <li><a>在售</a></li>
-                    <li><a>二手</a></li>
-                    <li><a>出租房</a></li>
+                    <li><a>已售</a></li>
                     <li><a>最新房源</a></li>
                 </ul>
             </div>
@@ -51,38 +57,38 @@
 </div>
 <div class="wrapper_index">
     <section class="check">
-        <div class=""></div>
         <div id="check_content_1" class="check_content">
             <label>价格</label>
             <div class="check_box">
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="0" data-endprice="20">
                     <span>20万以下</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="20" data-endprice="30">
                     <span>20-30万</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="30" data-endprice="40">
                     <span>30-40万</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="40" data-endprice="50">
                     <span>40-50万</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="50" data-endprice="60">
                     <span>50-60万</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startprice="60" data-endprice="70">
                     <span>60-70万</span>
                 </div>
                 <div class="check_custom">
                     <input type="text">
-                    <span></span>
+                    <span class="segmentation_s"></span>
                     <input type="text">
+                    <span>万</span>
                     <a>确定</a>
                 </div>
             </div>
@@ -91,33 +97,34 @@
             <label>面积</label>
             <div class="check_box">
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startsize="0" data-endsize="30">
                     <span>30 平米以下</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startsize="30" data-endsize="50">
                     <span>30-50平米</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startsize="50" data-endsize="70">
                     <span>50-70平米</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startsize="70" data-endsize="90">
                     <span>70-90平米</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-startsize="90" data-endsize="110">
                     <span>90-110平米</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
-                    <span>110平米以上</span>
+                    <input type="checkbox" data-startsize="110" data-endsize="130">
+                    <span>110-130平米</span>
                 </div>
                 <div class="check_custom">
                     <input type="text">
-                    <span></span>
+                    <span class="segmentation_s"></span>
                     <input type="text">
+                    <span>平</span>
                     <a>确定</a>
                 </div>
             </div>
@@ -126,27 +133,27 @@
             <label>户型</label>
             <div class="check_box">
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="一室">
                     <span>一室</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="二室">
                     <span>两室</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="三室">
                     <span>三室</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="四室">
                     <span>四室</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="五室">
                     <span>五室</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-type="五室以上">
                     <span>五室以上</span>
                 </div>
             </div>
@@ -155,15 +162,15 @@
             <label>类型</label>
             <div class="check_box">
                 <div class="check_box_content">
-                    <input type="checkbox">
-                    <span>二手房</span>
+                    <input type="checkbox" data-kind="出售">
+                    <span>出租房</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-kind="出租">
                     <span>新房</span>
                 </div>
                 <div class="check_box_content">
-                    <input type="checkbox">
+                    <input type="checkbox" data-kind="商铺">
                     <span>商铺</span>
                 </div>
             </div>
@@ -172,37 +179,13 @@
 </div>
 <div class="wrapper_index">
     <div class="show_bar">
-        <a class="a_click">默认排序</a>
+        <a class="a_noclick">默认排序</a>
         <a class="a_noclick">面积</a>
         <a class="a_noclick">价格</a>
     </div>
     <section class="show_content">
-        <div id="content1" class="content">
-            <div class="content_img">
-                <a><img src="img/img4.jpg"></a>
-            </div>
-            <div class="content_show">
-                <h4><a></a></h4>
-                <div id="content1_div1">
-                    <span></span><span class="segmentation"></span>
-                    <span></span><span class="segmentation"></span>
-                    <span></span><span class="segmentation"></span>
-                    <span></span><span>发布</span>
-                </div>
-                <div id="content1_div2">
-                    <span>联系人:</span><span>feng</span>
-                    <span>联系电话:</span><span>1561651651</span>
-                </div>
-                <div id="content1_div3">
-                    <span>地址</span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="content_price"><span>148</span>万元</div>
-            <div class="content_are"><span>74</span>平米</div>
-        </div>
+        <ul></ul>
         <div class="paging">
-            <a>下一页</a>
         </div>
     </section>
 </div>

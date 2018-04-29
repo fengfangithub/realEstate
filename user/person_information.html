@@ -15,17 +15,23 @@
             <div class="logo"></div>
             <div class="menu">
                 <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a>新房</a></li>
-                    <li><a>二手房</a></li>
-                    <li><a>租房</a></li>
-                    <li><a>商铺</a></li>
+                    <li>
+                        <a href="index.html">首页<span></span></a>
+                    </li>
+                    <li>
+                        <a href="advanced_search.html?kind=0">新房<span></span></a>
+                    </li>
+                    <li>
+                        <a href="advanced_search.html?kind=1">租房<span></span></a>
+                    </li>
+                    <li>
+                        <a href="advanced_search.html?kind=2">商铺<span></span></a>
+                    </li>
                     <li><a>移动APP</a></li>
                     <li><a>附近</a></li>
                 </ul>
                 <div class="person">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <a></a>
+                    <a><span class="glyphicon glyphicon-user"></span><span></span></a>
                     <a>退出</a>
                 </div>
             </div>
@@ -35,7 +41,7 @@
 <div class="user_information">
     <div class="left">
         <div class="person_img"></div>
-        <div class="person_name">欢迎你，xxxxx</div>
+        <div class="person_name"></div>
         <ul>
             <li><a>个人信息</a></li>
             <li><a>发布房屋</a></li>
@@ -87,7 +93,7 @@
         <div class="publish_house">
             <div class="house_content">
                 <label><span>*</span>展示名:</label>
-                <input type="text" placeholder="必填" value="15fd">
+                <input type="text" placeholder="必填">
                 <p></p>
             </div>
             <div class="house_content">
@@ -105,31 +111,31 @@
             </ul>
             <div class="house_content">
                 <label><span>*</span>所在商圈:</label>
-                <input type="text" value="df">
+                <input type="text">
             </div>
             <div class="house_content">
                 <label><span>*</span>所在小区:</label>
-                <input type="text" placeholder="必填" value="fefe">
+                <input type="text" placeholder="必填">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>具体地址:</label>
-                <input type="text" placeholder="必填" value="eff">
+                <input type="text" placeholder="必填">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>房屋面积:</label>
-                <input type="text" value="205">
+                <input type="text">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>联系人:</label>
-                <input type="text" placeholder="必填" value="156165">
+                <input type="text" placeholder="必填">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>联系方式:</label>
-                <input type="text" placeholder="必填" value="15616">
+                <input type="text" placeholder="必填">
                 <p></p>
             </div>
             <div class="house_content">
@@ -149,7 +155,7 @@
             </ul>
             <div class="house_content">
                 <label><span>*</span>房屋总价:</label>
-                <input type="text" placeholder="必填" value="6516">
+                <input type="text" placeholder="必填">
             </div>
             <div class="house_img">
                 <a class="file">图片上传
@@ -172,17 +178,20 @@
             <ul>
             </ul>
             <div class="paging">
-                <a>下一页</a>
             </div>
         </div>
         <div id="trading" class="record">
             <ul>
             </ul>
             <div class="paging">
-                <a>下一页</a>
             </div>
         </div>
-        <div></div>
+        <div id="buy" class="record">
+            <ul>
+            </ul>
+            <div class="paging">
+            </div>
+        </div>
         <div class="manage_house">
             <div class="manage_content">
                 <span>展示名</span>
@@ -293,7 +302,7 @@
                 </div>
             </div>
             <div class="manage_content">
-                <span>租出否</span>
+                <span>价格</span>
                 <div class="manage_input">
                     <input type="text" value="sfdfsds">
                     <div class="action_box">
@@ -307,10 +316,10 @@
             <div class="manage_img">
                 <span>图片修改</span>
                 <div class="action_img">
-                    <div>
-                        <img src="img/img2.jpg">
-                    </div>
                 </div>
+            </div>
+            <div class="manage_content">
+                <button class="manger_button">保存</button>
             </div>
         </div>
         <div class="loading">

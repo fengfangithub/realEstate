@@ -56,11 +56,12 @@ a:hover{
 
 .nav_bar_left{
     float: left;
-    margin: 0 0 0 70px;
+    margin: 0 0 0 50px;
     font-size: 1.1em;
 }
 .nav_bar_left a:hover{
     color: #ffffff!important;
+    text-decoration: none;
 }
 .nav_bar_left li{
     float: left;
@@ -92,19 +93,22 @@ a:hover{
     margin: 0 15px;
 }
 .login_register{
-    display: block;
+    display: none
 }
 .login_register a{
     margin-left: 20px;
 }
 .login_information{
-    display: none;
+    display: block;
 }
 .login_information a{
     margin-right: 20px;
     font-size: 0.7em;
     color: #ffffff;
     opacity: 0.8;
+}
+.login_information a:link{
+    color: #ffffff;
 }
 .login_information a span:first-child{
     margin-right: 5px;

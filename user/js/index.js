@@ -94,32 +94,17 @@ $(function () {
         }else{
             $(p[3]).html("");
         }
-        $.ajax({
-            url: "http://www.xhban.com:8080/EM/user/login",
-            type: "post",
-            dataType: "json",
-            data: {
-                phone: account,
-                password: password
-            },
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            success: function (data) {
-                if(data.state != 0){
-                    $(p[0]).text(data.message);
-                }else{
-                    login_register.css("display", "none");
-                    login_information.css("display", "block");
-                    text.text(account);
-                    login_cancel.click();
-                }
-            },
-            error: function (data) {
-                console.log(data.state());
+        dataLoad("http://www.xhban.com:8080/EM/user/login",{phone: account,password: password},loginBack);
+        function loginBack(data){
+            if(data.state != 0){
+                $(p[0]).text(data.message);
+            }else{
+                login_register.css("display", "none");
+                login_information.css("display", "block");
+                text.text(account);
+                login_cancel.click();
             }
-        });
+        }
     });
     //注册事件
     var register_event = $(".register_body button");
@@ -168,62 +153,148 @@ $(function () {
         }else {
             $(p[5]).html("");
         }
-        $.ajax({
-            url: "http://www.xhban.com:8080/EM/user/register",
-            type: "post",
-            async: false,
-            data:{
-                name: name,
-                sex: sex,
-                phone: phone,
-                password: password,
-                address: address
-            },
-            dataType: "json",
-            success: function (data) {
-                    $(p[0]).text(data.message);
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
+        var registerData = {
+            name: name,
+            sex: sex,
+            phone: phone,
+            password: password,
+            address: address
+        }
+        dataLoad("http://www.xhban.com:8080/EM/user/register",registerData,registerBack);
+        function registerBack(data){
+            window.alert(data.message);
+            window.location.href = window.location.href;
+        }
     });
-
-    //状态保存
-    function state() {
+    //退出登录
+    var exit = $(".login_information a:last-child");
+    exit.click(function () {
+        dataLoad("http://www.xhban.com:8080/EM/user/logout",null,null);
         var login_information = $(".login_information");
         var login_register = $(".login_register");
-        var text = $(".login_information a span:last-child");
-        var data_load = null;
-        var exit = $(".login_information a:last-child");
-        if(login_register.css("display") == "block"){
-            $.ajax({
-                url: "http://www.xhban.com:8080/EM/user/lookinfo",
-                type: "post",
-                dataType: "json",
-                data: {},
-                async: false,
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success: function (data) {
-                    data_load = data;
-                },
-                error: function () {
-                    console.log(data)
-                }
-            });
-            if(data_load.state == 0){
-                text.text(data_load.resultData[0].phone);
-                login_register.css("display", "none");
-                login_information.css("display", "block");
+        login_register.css("display","block");
+        login_information.css("display","none");
+    });
+    //判断登录
+    function loginState() {
+        dataLoad("http://www.xhban.com:8080/EM/user/lookinfo",null,stateBack);
+        function stateBack(data) {
+            var login_information = $(".login_information");
+            var login_register = $(".login_register");
+            var span = $(".login_information a span:last-child");
+            if(data.state == 0){
+                span.text(data.resultData[0].phone);
+                login_register.css("display","none");
+                login_information.css("display","block");
+            }else{
+                login_register.css("display","block");
+                login_information.css("display","none");
             }
         }
-        exit.click(function () {
-            login_register.css("display", "block");
-            login_information.css("display", "none");
+    }
+    loginState();
+    //搜索
+    var serach_input = $(".nav_bar_right input");
+    var serach = $(".nav_bar_right .search_icon");
+    serach.click(function () {
+        window.location.href = "advanced_search.html?serach="+encodeURI(encodeURI(serach_input.val()));
+    });
+    //轮播图
+    (function sf() {
+        var list_image = $("#list img");
+        dataLoad("http://www.xhban.com:8080/EM/user/listthreeimages",{},sfBack);
+        function sfBack(data){
+            console.log(data);
+            if(data.state == 0){
+                for(var i = 0; i < list_image.length; i++){
+                    if(i == 0){
+                        $(list_image[i]).attr("src",data.resultData[2].path);
+                    }else if(i > 0 && i < 4){
+                        $(list_image[i]).attr("src",data.resultData[i-1].path)
+                    }else{
+                        $(list_image[i]).attr("src",data.resultData[0].path);
+                    }
+                }
+            }
+        }
+    })();
+    //快速浏览
+    (function look() {
+        var a = $(".poins");
+        dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
+        function shopsBack(data) {
+            console.log(data);
+            if(data.state == 0){
+                var ul = $(".content_img ul");
+                for(var i = 0; i < 3; i++){
+                    ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
+                        "<span>"+data.resultData[i].name+"</span><br>" +
+                        "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
+                        "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                }
+            }
+        }
+        $(a[0]).mouseenter(function () {
+            dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
+            function shopsBack(data) {
+                console.log(data);
+                if(data.state == 0){
+                    var ul = $(".content_img ul");
+                    for(var i = 0; i < 3; i++){
+                        ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
+                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
+                            "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                    }
+                }
+            }
+        });
+        $(a[1]).mouseenter(function () {
+            console.log("fsfs");
+            dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出租"},shopsBack);
+            function shopsBack(data) {
+                console.log(data);
+                if(data.state == 0){
+                    var ul = $(".content_img ul");
+                    for(var i = 0; i < 3; i++){
+                        ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
+                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
+                            "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                    }
+                }
+            }
+        });
+        $(a[2]).mouseenter(function () {
+            console.log("fsfs");
+            dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"商铺"},shopsBack);
+            function shopsBack(data) {
+                console.log(data);
+                if(data.state == 0){
+                    var ul = $(".content_img ul");
+                    for(var i = 0; i < 3; i++){
+                        ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
+                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
+                            "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                    }
+                }
+            }
+        });
+    })();
+
+    function dataLoad(url, data, callback) {
+        $.ajax({
+            url: url,
+            type: "post",
+            dataType: "json",
+            data: data,
+            async: true,
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: callback
         });
     }
-    state();
 });
