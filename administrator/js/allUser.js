@@ -22,20 +22,10 @@ $(function () {
         rows = parseInt(getQueryString("rows"));
     }
 
-    //登录
-    dataLoad("http://www.xhban.com:8080/EM/admin/login",{name:"manager",password: "manager"},loginBack);
-    function loginBack(data) {
-        if(data.state == 0){
-            allUserInformation();
-        }else{
-            window.location.href = "login.html";
-        }
-
-    }
     //请求所有用户信息
-    function allUserInformation() {
+    (function allUserInformation() {
         dataLoad("http://www.xhban.com:8080/EM/admin/listusers",null, allUserInformationBack);
-    }
+    })();
     function allUserInformationBack(data){
         console.log(data);
         if(data.state == 0){
@@ -77,8 +67,8 @@ $(function () {
                     "<td>"+state+"</td>" +
                     "<td style='width: 30%'>" +
                     "<a style='color: red;cursor: pointer;margin-right: 20px;font-size: 0.9em'><i class='fa fa-trash-o' style='margin-right: 5px;'></i>删除</a>" +
-                    "<a style='color: red;cursor: pointer;margin-right: 20px;font-size: 0.9em'><i class='fa fa-trash-o' style='margin-right: 5px;'></i>发布记录</a>" +
-                    "<a style='color: red;cursor: pointer;margin-right: 20px;font-size: 0.9em'><i class='fa fa-trash-o' style='margin-right: 5px;'></i>交易记录</a>" +
+                    "<a style='color: red;cursor: pointer;margin-right: 20px;font-size: 0.9em'><i class='fa fa-paper-plane' style='margin-right: 5px;'></i>发布记录</a>" +
+                    "<a style='color: red;cursor: pointer;margin-right: 20px;font-size: 0.9em'><i class='fa fa-handshake-o' style='margin-right: 5px;'></i>交易记录</a>" +
                     "</td>" +
                     "</tr>");
 
@@ -86,9 +76,14 @@ $(function () {
                 var fun_a = $(td[i%rows]).find("a");
                 //删除用户点击事件
                 $(fun_a[0]).click(function () {
+                    var s = state;
                     var user_id = id;
                     return function () {
-                        dataLoad("http://www.xhban.com:8080/EM/admin/forbiduser", {user_id: user_id}, deleteBack);
+                        if(s == false){
+                            dataLoad("http://www.xhban.com:8080/EM/admin/forbiduser", {user_id: user_id}, deleteBack);
+                        }else{
+                            window.alert("已经被禁用")
+                        }
                     }
                 }());
                 //查询用户发布信息
@@ -146,6 +141,8 @@ $(function () {
                 var url = "allUser.html?page_num=1"+"&rows="+text;
                 window.location.href = url;
             });
+        }else{
+            window.location.href = "login.html";
         }
     }
 

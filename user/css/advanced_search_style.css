@@ -42,9 +42,7 @@ a{
     color: #898782;
     font-size: 0.9em;
     text-align: end;
-}
-.person span{
-    margin-right: 10px;
+    display: none;
 }
 .person a{
     color: #f9f9f9;
@@ -52,6 +50,9 @@ a{
 }
 .person a:hover{
     color: #f9f9f9;
+}
+.person a:link{
+    color: #ffffff;
 }
 
 /*搜索功能区*/
@@ -71,11 +72,20 @@ a{
     width: 100px;
     float: left;
     height: 32px;
-    background-color: #1c639d;
+    font-family: "华文隶书";
+    background-color: #3cb570;
+    color: #ffffff;
+    text-align: center;
+    line-height: 32px;
+    font-size: 2em;
+}
+.menu>a:hover{
+    text-decoration: none;
+    color: #ffffff;
 }
 .menu_ul{
     height: 100%;
-    margin-left: 50px;
+    margin-left: 20px;
     float: left;
 }
 .menu ul li{

@@ -124,6 +124,17 @@ $(function () {
 
     //执行页面加载
     (function loading() {
+        dataLoad("http://www.xhban.com:8080/EM/user/lookinfo",{},loginBack);
+        function loginBack(data){
+            console.log(data);
+            if(data.state == 0){
+                var person = $(".person");
+                var a = $(".person a");
+                person.css("display","block");
+                a.text(data.resultData[0].name);
+                a.attr("href","person_information.html");
+            }
+        }
         var kind_a = $(".contain ul li a");
         var custom_input = $(".check_custom input");
         $(kind_a[parseInt(kind)+1]).css("color","#ffffff");
@@ -186,8 +197,6 @@ $(function () {
             }
             return;
         }
-
-
     })();
 
     //页面房屋数据加载

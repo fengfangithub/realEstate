@@ -30,19 +30,12 @@ $(function () {
         user_id = getQueryString("user_id");
     }
 
-    //登录
-    dataLoad("http://www.xhban.com:8080/EM/admin/login",{name:"manager",password: "manager"},loginBack);
-    function loginBack(data) {
-        console.log(data);
-        release();
-    }
 
     //请求所有用户发布信息
-    function release() {
+    (function release() {
         dataLoad("http://www.xhban.com:8080/EM/admin/listhousesofuser",{user_id: user_id}, allreleaseInformationBack);
-    }
+    })();
     function allreleaseInformationBack(data){
-        console.log(data);
         if(data.state == 0){
             var resultData = data.resultData;
             $("#sampleTable_info").text("总共有 "+resultData.length+" 行");
@@ -109,6 +102,8 @@ $(function () {
                 var url = "allUser.html?page_num=1"+"&rows="+text;
                 window.location.href = url;
             });
+        }else{
+            window.location.href = "login.html";
         }
     }
 
