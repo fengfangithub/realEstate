@@ -57,26 +57,26 @@ $(function () {
     }
 
     next.click (function () {
-        if(index == 3){
-            index = 1;
-        }else{
-            index+=1;
-        }
-        showButton();
         if(animated == false){
+            if(index == 3){
+                index = 1;
+            }else{
+                index+=1;
+            }
+            showButton();
             animate(-100);
         }
     });
 
     prev.click(function () {
-        if(index == 1){
-            index = 3;
-        }else{
-            index -= 1;
-        }
-        showButton();
         if(animated == false){
+            if(index == 1){
+                index = 3;
+            }else{
+                index -= 1;
+            }
             animate(100);
+            showButton();
         }
     });
 
@@ -88,8 +88,12 @@ $(function () {
             var myIndex = parseInt(this.getAttribute("index"));
             var offset = -100 * (myIndex - index);
             index = myIndex;
-            animate(offset);
-            showButton();
+            if(animated == false){
+                animate(offset);
+                showButton();
+            }else{
+                return;
+            }
         }
     }
     contain.mouseover(function () {

@@ -42,7 +42,7 @@ a:hover{
     font-family: "华文隶书";
     text-align: center;
     line-height: 59px;
-    font-size: 2.8em;
+    font-size: 3em;
 }
 .header nav {
     float: left;
@@ -61,14 +61,14 @@ a:hover{
 
 .nav_bar_left{
     float: left;
-    margin: 0 0 0 50px;
+    margin: 0 0 0 10px;
     font-size: 1.1em;
 }
-.nav_bar_left a:link{
-    color: #ffffff;
+.nav_bar_left a:hover{
+    color: #ffffff!important;
     text-decoration: none;
 }
-.nav_bar_left a:hover{
+.nav_bar_left a:visited{
     color: #ffffff!important;
     text-decoration: none;
 }
@@ -94,11 +94,11 @@ a:hover{
     margin: 0;
     font-size: 1.1em;
 }
-.nav_bar_right a:link{
-    color: #ffffff;
-}
 .header .nav_bar_right a:hover{
     color: #fdfdfd;!important;
+}
+.nav_bar_right a:visited{
+    color: #ffffff;
 }
 .nav_bar_right li{
     float: left;
@@ -194,13 +194,11 @@ a:hover{
 .arrow{
     cursor: pointer;
     display: none;
-    line-height: 70px;
+    line-height: 70px!important;
     text-align: center;
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 30px;
     width: 40px;
     height:70px;
-    position: absolute;
     z-index: 2000;
     background: rgba(0,0,0,.3);
     color: #ffffff;
@@ -213,11 +211,13 @@ a:hover{
     display: block;
 }
 #prev{
+    position: absolute;
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
 }
 #next{
+    position: absolute;
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
@@ -303,7 +303,11 @@ a:hover{
 .content_img ul li div span{
     line-height:30px;
     display: inline-block;
-    margin-right: 5px;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+.house_name{
+    font-size: 1.1em!important;
 }
 
 /*快速浏览结束*/

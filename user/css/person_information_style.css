@@ -25,7 +25,11 @@ a{
     width: 100px;
     height: 100%;
     float: left;
-    background-color: green;
+    font-family: "华文隶书";
+    color: #ffffff;
+    line-height: 55px;
+    text-align: center;
+    font-size: 2.6em;
 }
 .navigation .menu{
     width: 900px;
@@ -164,8 +168,8 @@ a{
 .person_information .content{
     width: 100%;
     text-align: start;
-    height: 40px;
-    line-height: 40px;
+    height: 35px;
+    line-height: 35px;
     margin-bottom: 10px;
 }
 .person_information .head_portrait{
@@ -173,7 +177,7 @@ a{
     width: 120px;
     height: 120px;
     right: 120px;
-    top:120px;
+    top:90px;
     background-image: url("../img/img2.jpg");
     background-size: cover;
 }
@@ -193,6 +197,49 @@ a{
 }
 .modify_information{
     display: none;
+}
+.form_input{
+    width: 50%;
+    height: 40px;
+    margin: 5px 20px 0 0px;
+}
+.form_input>label{
+    display: block;
+    width: 20%;
+    text-align: right;
+    float: left;
+    margin: 5px 10px 0 0;
+}
+.radios{
+    float: left;
+    width: 200px;
+}
+.radios input{
+    margin-right: 5px!important;
+}
+.radios label{
+    margin-right: 20px;
+}
+.form_input input[type="text"]{
+    width: 60%;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #a8a8a8;
+    outline: none;
+    float: left;
+}
+.form_input button{
+    background-color: #f5f5f5;
+    outline: none;
+    border: 1px solid #dbe2e8;
+    width: 280px;
+    height: 35px;
+    margin: 10px 0px 0 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 1em;
 }
 .modify_password{
     display: none;
@@ -510,7 +557,6 @@ a{
     width: 180px;
     height: 100%;
     float: left;
-    margin-left: 10px;
 }
 .modify_button{
     position: absolute;
@@ -643,6 +689,48 @@ a{
     color: #FFFFFF;
     margin-left: 100px;
 }
+/*购买与销售*/
+.seller_log{
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid red;
+    line-height: 60px;
+    text-align: center;
+    color: #ff413c;
+    top: 5px;
+    left: 5px;
+}
+.buyer{
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-top: 10px;
+}
+.seller{
+    width: 50%;
+    height: auto;
+    float: right;
+    margin-top: 10px;
+}
+.trad_content{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+.trad_content label{
+    margin: 0;
+    width: 70px;
+    text-align: left;
+    color: #4e4e4e;
+}
+.trad_content span{
+    color: #6e6e6e;
+}
+
+
 
 /*加载中*/
 .loading{

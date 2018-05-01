@@ -51,8 +51,9 @@ a{
 .person a:hover{
     color: #f9f9f9;
 }
-.person a:link{
+.person a:visited{
     color: #ffffff;
+    text-decoration: none;
 }
 
 /*搜索功能区*/

@@ -33,10 +33,11 @@ $(function () {
 
     //请求所有用户发布信息
     (function release() {
-        dataLoad("http://www.xhban.com:8080/EM/admin/listhousesofuser",{user_id: user_id}, allreleaseInformationBack);
+        dataLoad("http://www.xhban.com:8080/EM/admin/listtradeinfosofuser",{user_id: user_id}, alltradeInformationBack);
     })();
-    function allreleaseInformationBack(data){
+    function alltradeInformationBack(data){
         if(data.state == 0){
+            console.log(data);
             var resultData = data.resultData;
             $("#sampleTable_info").text("总共有 "+resultData.length+" 行");
             var ul = $("#sampleTable_paginate ul");
@@ -46,29 +47,38 @@ $(function () {
                 ul.append("<li><a class='page-link'>"+i+"</a></li>");
             }
             ul.append("<li class='paginate_button page-item next'><a class='page-link'>下一页</a></li>");
-
             //表格数据加载
             var tbody= $("#sampleTable tbody");
             for(var i =(page_num - 1)*rows; i < page_num*rows && i < resultData.length; i++){
-                var id = resultData[i].id;
-                tbody.append(
-                    "<tr>" +
-                    "<td>"+resultData[i].name+"</td>" +
-                    "<td>"+resultData[i].kind+"</td>" +
-                    "<td>"+resultData[i].area+"</td>" +
-                    "<td>"+resultData[i].village+"</td>" +
-                    "<td>"+resultData[i].address+"</td>" +
-                    "<td>"+resultData[i].size+"</td>" +
-                    "<td>"+resultData[i].type+"</td>" +
-                    "<td>"+resultData[i].traded+"</td>" +
-                    "<td>"+resultData[i].qualified+"</td>" +
-                    "<td>"+resultData[i].contact+"</td>" +
-                    "<td>"+resultData[i].phone+"</td>" +
-                    "<td>"+resultData[i].price+"</td>" +
-                    "<td>"+resultData[i].time+"</td>" +
-                    "</tr>");
+                var sellerid = resultData[i].sellerid;
+                var buyerid = resultData[i].buyerid;
+                var houseid = resultData[i].houseid;
+                var housedata;
+                var sellerdata;
+                var buyerdata;
+                dataLoad("http://www.xhban.com:8080/EM/user/lookhouseinfo",{house_id:houseid},houseBack);
+                function houseBack(data){
+                    if(data.state == "查询成功"){
+                        housedata = data.resultData[0];
+                        tbody.append(
+                            "<tr>" +
+                            "<td>"+housedata.name+"</td>" +
+                            "<td>"+housedata.kind+"</td>" +
+                            "<td>"+housedata.area+"</td>" +
+                            "<td>"+housedata.village+"</td>" +
+                            "<td>"+housedata.address+"</td>" +
+                            "<td>"+housedata.size+"</td>" +
+                            "<td>"+housedata.type+"</td>" +
+                            "<td>"+housedata.traded+"</td>" +
+                            "<td>"+housedata.qualified+"</td>" +
+                            "<td>"+housedata.contact+"</td>" +
+                            "<td>"+housedata.phone+"</td>" +
+                            "<td>"+housedata.price+"</td>" +
+                            "<td>"+housedata.time+"</td>" +
+                            "</tr>");
+                    }
+                }
             }
-
             //页数点击事件
             var a = $("#sampleTable_paginate ul li a");
             $(a[page_num]).css("background-color","#dee2e6");
@@ -103,7 +113,7 @@ $(function () {
                 window.location.href = url;
             });
         }else{
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
     }
 
@@ -121,7 +131,8 @@ $(function () {
             crossDomain: true,
             success: callback,
             error: function (data) {
-                console.log(data)
+                console.log(data);
+                window.location.href = "index.html";
             }
         });
     }

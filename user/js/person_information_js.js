@@ -33,20 +33,27 @@ $(function () {
     display();
     dataLoad("http://www.xhban.com:8080/EM/user/lookinfo", {}, personInformationBack);
     function personInformationBack(data){
-        var person_name = $(".person_name");
-        var person_span = $(".person a span:last-child");
-        person_name.text("欢迎您，"+data.resultData[0].name);
-        var person_exit = $(".person a:last-child");
-        $(person_span[0]).text(data.resultData[0].phone);
-        person_exit.click(function () {
-            dataLoad("http://www.xhban.com:8080/EM/user/logout",null,null);
+        console.log(data);
+        if(data.state == 0){
+            var person_name = $(".person_name");
+            var person_span = $(".person a span:last-child");
+            person_name.text("欢迎您，"+data.resultData[0].name);
+            var person_exit = $(".person a:last-child");
+            $(person_span[0]).text(data.resultData[0].phone);
+            person_exit.click(function () {
+                dataLoad("http://www.xhban.com:8080/EM/user/logout",null,null);
+                window.location.href = "index.html";
+            });
+            if(page_id == 0 && data.state == 0){
+                person_information_show(data);
+                modify_information();
+                modify_password();
+            }
+        }else {
+            window.alert(data.message)
             window.location.href = "index.html";
-        });
-        if(page_id == 0 && data.state == 0){
-            person_information_show(data);
-            modify_information();
-            modify_password();
         }
+
     }
     if(page_id == 1){
         publish_house();
@@ -91,8 +98,13 @@ $(function () {
         button.click(function () {
             var input = $(".modify_information input");
             var name = $(input[0]).val();
-            var sex = $(input[1]).val();
-            var address = $(input[2]).val();
+            var sex;
+            var address = $(input[4]).val();
+            for(var i = 1; i < 4; i++){
+                if(input[i].checked){
+                   sex = $(input[i]).val();
+                }
+            }
             var data = {
                 name: name,
                 sex: sex,
@@ -256,8 +268,8 @@ $(function () {
                         "<a><img src='" + img_path + "'></a>" +
                         "<div class='record_describe'>" +
                         "<h3><a>" + name + "</a></h3>" +
-                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size + "</span></div>" +
-                        "<div class='detailed'><span>" + type + "</span><span>" + kind + "</span><span>" + time + "</span></div>" +
+                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size +"  平米"+ "</span></div>" +
+                            "<div class='detailed'><span>" + type+"一厅"+ "</span><span>" + house_data.area + "</span><span>" + time + "</span></div>" +
                         "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
                         "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
                         "</div>" +
@@ -426,12 +438,14 @@ $(function () {
                 var ul_div = $("#trading ul");
                 var numberPage = Math.ceil(data.resultData.length / 5);
                 //添加分页a标签
-                var paging = $("#trading .paging");
-                paging.append("<a class='next_previous'>上一页</a>");
-                for (var i = 1; i <= numberPage; i++) {
-                    paging.append("<a class='paging_a'>" + i + "</a>");
+                if(numberPage != 0){
+                    var paging = $("#trading .paging");
+                    paging.append("<a class='next_previous'>上一页</a>");
+                    for (var i = 1; i <= numberPage; i++) {
+                        paging.append("<a class='paging_a'>" + i + "</a>");
+                    }
+                    paging.append("<a class='next_previous'>下一页</a>");
                 }
-                paging.append("<a class='next_previous'>下一页</a>");
                 //数据加载
                 for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
                     var house_data = data.resultData[j].house;
@@ -462,14 +476,21 @@ $(function () {
                     ul_div.append(
                         "<li>" +
                         "<div class='record_content'>" +
-                        "<a><img src='" + img_path + "'></a>" +
+                        "<b class='seller_log'>已卖</b>" +
+                        "<a><img src='"+house_data.image+"'></a>" +
                         "<div class='record_describe'>" +
-                        "<h3><a>" + name + "</a></h3>" +
-                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size + "</span></div>" +
-                        "<div class='detailed'><span>" + type + "</span><span>" + kind + "</span><span>" + time + "</span></div>" +
-                        "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
-                        "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
+                        "<h3><a>"+house_data.name+"</a></h3>" +
+                        "<div class='buyer'>" +
+                        "<div class='trad_content'><label>买家：</label><span>"+buyer_data.name+"</span></div>" +
+                        "<div class='trad_content'><label>类型：</label><span>"+house_data.type+"一厅"+"</span></div>" +
+                        "<div class='trad_content'><label>价格：</label><span>"+house_data.price+"</span></div>" +
+                        "</div>"+
+                        "<div class='buyer'>" +
+                        "<div class='trad_content'><label>卖家：</label><span>"+seller_data.name+"</span></div>" +
+                        "<div class='trad_content'><label>面积：</label><span>"+house_data.size+"平"+"</span></div>" +
+                        "<div class='trad_content'><label>时间：</label><span>"+house_data.time.slice(0, 9)+"</span></div>" +
                         "</div>" +
+                        "</div>"+
                         "</div>" +
                         "</li>");
                 }
@@ -508,18 +529,21 @@ $(function () {
     function buyRecord() {
         dataLoad("http://www.xhban.com:8080/EM/user/listbuyinfos", null, tradingRecord);
         function tradingRecord(data) {
+            console.log(data);
             if (data.state == 0) {
                 $(div[6]).css("display", "none");
                 $(div[page_id]).css("display", "block");
                 var ul_div = $("#buy ul");
                 var numberPage = Math.ceil(data.resultData.length / 5);
                 //添加分页a标签
-                var paging = $("#buy .paging");
-                paging.append("<a class='next_previous'>上一页</a>");
-                for (var i = 1; i <= numberPage; i++) {
-                    paging.append("<a class='paging_a'>" + i + "</a>");
+                if(numberPage != 0){
+                    var paging = $("#buy .paging");
+                    paging.append("<a class='next_previous'>上一页</a>");
+                    for (var i = 1; i <= numberPage; i++) {
+                        paging.append("<a class='paging_a'>" + i + "</a>");
+                    }
+                    paging.append("<a class='next_previous'>下一页</a>");
                 }
-                paging.append("<a class='next_previous'>下一页</a>")
                 //数据加载
                 for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
                     var house_data = data.resultData[j].house;
@@ -550,14 +574,21 @@ $(function () {
                     ul_div.append(
                         "<li>" +
                         "<div class='record_content'>" +
-                        "<a><img src='" + img_path + "'></a>" +
+                        "<b class='seller_log'>已买</b>" +
+                        "<a><img src='"+house_data.image+"'></a>" +
                         "<div class='record_describe'>" +
-                        "<h3><a>" + name + "</a></h3>" +
-                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size + "</span></div>" +
-                        "<div class='detailed'><span>" + type + "</span><span>" + kind + "</span><span>" + time + "</span></div>" +
-                        "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
-                        "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
+                        "<h3><a>"+house_data.name+"</a></h3>" +
+                        "<div class='buyer'>" +
+                        "<div class='trad_content'><label>买家：</label><span>"+buyer_data.name+"</span></div>" +
+                        "<div class='trad_content'><label>类型：</label><span>"+house_data.type+"一厅"+"</span></div>" +
+                        "<div class='trad_content'><label>价格：</label><span>"+house_data.price+"</span></div>" +
+                        "</div>"+
+                        "<div class='buyer'>" +
+                        "<div class='trad_content'><label>卖家：</label><span>"+seller_data.name+"</span></div>" +
+                        "<div class='trad_content'><label>面积：</label><span>"+house_data.size+"平"+"</span></div>" +
+                        "<div class='trad_content'><label>时间：</label><span>"+house_data.time.slice(0, 9)+"</span></div>" +
                         "</div>" +
+                        "</div>"+
                         "</div>" +
                         "</li>");
                 }

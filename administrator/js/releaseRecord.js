@@ -106,7 +106,7 @@ $(function () {
             window.alert(data.message)
             window.location.href = "allUser.html";
         }else{
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
     }
 
@@ -124,7 +124,8 @@ $(function () {
             crossDomain: true,
             success: callback,
             error: function (data) {
-                console.log(data)
+                console.log(data);
+                window.location.href = "index.html";
             }
         });
     }

@@ -23,7 +23,7 @@ $(function () {
     }
     var kind;
     var kind_a = $(".contain ul a");
-    if(getQueryString("kind") == null){
+    if(String(getQueryString("kind")) == "null"){
         kind = 0;
     }else{
         kind = getQueryString("kind");
@@ -34,93 +34,6 @@ $(function () {
     var checkbox_4 = $("#check_content_4 .check_box_content input");
     var show_bar_a = $(".show_bar a");
 
-    //功能页面跳转
-    function checkBox(checkbox, n) {
-        for(var i = 0; i < checkbox.length; i++){
-            checkbox[i].onclick = function () {
-                var s= i;
-                return function () {
-                    var url;
-                    if(n == 1){
-                        price = s;
-                        start_price = $(checkbox[s]).attr("data-startprice");
-                        end_price = $(checkbox[s]).attr("data-endprice");
-                        url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price=null"+"&custom_size="+custom_size;
-                        window.location = url;
-                    }else if(n == 2){
-                        size = s;
-                        start_size = $(checkbox[s]).attr("data-startsize");
-                        end_size = $(checkbox[s]).attr("data-endsize");
-                        url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size=null";
-                        window.location = url;
-                    }else if(n == 3){
-                        type = s;
-                        var url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size="+custom_size;
-                        window.location = url;
-                    }else{
-                        kind = s;
-                        var url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size="+custom_size;
-                        window.location = url;
-                    }
-                }
-            }();
-        }
-        var custom_a = $(".check_custom a");
-        var custom_input = $(".check_custom input");
-        $(custom_a[0]).click(function () {
-            start_price = $(custom_input[0]).val();
-            end_price = $(custom_input[1]).val();
-            var url = "advanced_search.html?"+"price=null"+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price=0"+"&custom_size="+custom_size;
-            window.location.href = url;
-        });
-        $(custom_a[1]).click(function () {
-            start_size = $(custom_input[2]).val();
-            end_size = $(custom_input[3]).val();
-            var url = "advanced_search.html?"+"price="+price+"&size=null"+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size=0";
-            window.location.href = url;
-        });
-    }
-    (function check(){
-        //搜索限制条件
-        checkBox(checkbox_1, 1);
-        checkBox(checkbox_2, 2);
-        checkBox(checkbox_3, 3);
-        checkBox(checkbox_4, 4);
-        for(var i = 0; i < kind_a.length; i++){
-            if(i>0 && i<4){
-                $(kind_a[i]).click(function () {
-                    var n = i-1;
-                    return function () {
-                        var url = "advanced_search.html?"+"&kind="+n;
-                        window.location.href = url;
-                    }
-                }());
-            }
-            if(i == 0){
-                $(kind_a[0]).attr("href","index.html");
-            }
-        }
-        //排序方式
-        for(var i = 0; i < show_bar_a.length; i++){
-            $(show_bar_a[i]).click(function () {
-                var n = i;
-                return function () {
-                    var str = window.location.href;
-                    var url = str.split("&sort")[0]+"&sort="+n;
-                    window.location.href = url;
-                };
-            }());
-        }
-        var bt = $(".input button");
-        var input = $(".input input");
-        bt.click(function () {
-            var paging = $(".paging");
-            var showContent = $(".show_content ul");
-            paging.html("");
-            showContent.html("");
-            pageLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter: input.val()});
-        });
-    })();
 
     //执行页面加载
     (function loading() {
@@ -131,7 +44,7 @@ $(function () {
                 var person = $(".person");
                 var a = $(".person a");
                 person.css("display","block");
-                a.text(data.resultData[0].name);
+                a.text(data.resultData[0].phone);
                 a.attr("href","person_information.html");
             }
         }
@@ -199,6 +112,112 @@ $(function () {
         }
     })();
 
+    //功能页面跳转
+    function checkBox(checkbox, n) {
+        for(var i = 0; i < checkbox.length; i++){
+            checkbox[i].onclick = function () {
+                var s= i;
+                return function () {
+                    var url;
+                    if(n == 1){
+                        if(checkbox_1[s].checked){
+                            price = s;
+                        }else{
+                            price = null;
+                        }
+                        console.log(checkbox_1[s].checked);
+                        console.log(price);
+                        start_price = $(checkbox[s]).attr("data-startprice");
+                        end_price = $(checkbox[s]).attr("data-endprice");
+                        url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price=null"+"&custom_size="+custom_size;
+                        window.location = url;
+                    }else if(n == 2){
+                        if (checkbox_2[s].checked){
+                            size = s;
+                        }else{
+                            size = null;
+                        }
+                        start_size = $(checkbox[s]).attr("data-startsize");
+                        end_size = $(checkbox[s]).attr("data-endsize");
+                        url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size=null";
+                        window.location = url;
+                    }else if(n == 3){
+                        if (checkbox_3[s].checked){
+                            type = s;
+                        }else{
+                            type = null;
+                        }
+                        var url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size="+custom_size;
+                        window.location = url;
+                    }else{
+                        if(checkbox_4[s].checked){
+                            kind = s;
+                        }else{
+                            kind = null;
+                        }
+                        var url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size="+custom_size;
+                        window.location = url;
+                    }
+                }
+            }();
+        }
+        var custom_a = $(".check_custom a");
+        var custom_input = $(".check_custom input");
+        $(custom_a[0]).click(function () {
+            start_price = $(custom_input[0]).val();
+            end_price = $(custom_input[1]).val();
+            var url = "advanced_search.html?"+"price=null"+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price=0"+"&custom_size="+custom_size;
+            window.location.href = url;
+        });
+        $(custom_a[1]).click(function () {
+            start_size = $(custom_input[2]).val();
+            end_size = $(custom_input[3]).val();
+            var url = "advanced_search.html?"+"price="+price+"&size=null"+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size=0";
+            window.location.href = url;
+        });
+    }
+    (function check(){
+        //搜索限制条件
+        checkBox(checkbox_1, 1);
+        checkBox(checkbox_2, 2);
+        checkBox(checkbox_3, 3);
+        checkBox(checkbox_4, 4);
+        for(var i = 0; i < kind_a.length; i++){
+            if(i>0 && i<4){
+                $(kind_a[i]).click(function () {
+                    var n = i-1;
+                    return function () {
+                        var url = "advanced_search.html?"+"&kind="+n;
+                        window.location.href = url;
+                    }
+                }());
+            }
+            if(i == 0){
+                $(kind_a[0]).attr("href","index.html");
+            }
+        }
+        //排序方式
+        for(var i = 0; i < show_bar_a.length; i++){
+            $(show_bar_a[i]).click(function () {
+                var n = i;
+                return function () {
+                    var str = window.location.href;
+                    var url = str.split("&sort")[0]+"&sort="+n;
+                    window.location.href = url;
+                };
+            }());
+        }
+        var bt = $(".input button");
+        var input = $(".input input");
+        bt.click(function () {
+            var paging = $(".paging");
+            var showContent = $(".show_content ul");
+            paging.html("");
+            showContent.html("");
+            pageLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter: input.val()});
+        });
+    })();
+
     //页面房屋数据加载
     function pageLoad(url,data) {
         dataLoad(url,data, pageLoadBack);
@@ -209,11 +228,13 @@ $(function () {
             //添加分页a标签
             var numberPage = Math.ceil(data.resultData.length / 5);
             var paging = $(".paging");
-            paging.append("<a class='next_previous'>上一页</a>");
-            for (var i = 1; i <= numberPage; i++) {
-                paging.append("<a class='paging_a'>" + i + "</a>");
+            if(numberPage != 0){
+                paging.append("<a class='next_previous'>上一页</a>");
+                for (var i = 1; i <= numberPage; i++) {
+                    paging.append("<a class='paging_a'>" + i + "</a>");
+                }
+                paging.append("<a class='next_previous'>下一页</a>");
             }
-            paging.append("<a class='next_previous'>下一页</a>");
             var showContent = $(".show_content ul");
             for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
                 var house_data = data.resultData[j];
@@ -296,7 +317,6 @@ $(function () {
                 }
             });
         }
-
     }
 
     //ajax请求房屋信息

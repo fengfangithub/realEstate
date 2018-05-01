@@ -142,7 +142,7 @@ $(function () {
                 window.location.href = url;
             });
         }else{
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
     }
 
@@ -160,7 +160,8 @@ $(function () {
             crossDomain: true,
             success: callback,
             error: function (data) {
-                console.log(data)
+                console.log(data);
+                window.location.href = "index.html";
             }
         });
     }

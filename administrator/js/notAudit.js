@@ -32,9 +32,9 @@ $(function () {
 
     //请求所有未审核的发布信息
     (function release() {
-        dataLoad("http://www.xhban.com:8080/EM/admin/listunqualifiedhouses",null, allreleaseInformationBack);
+        dataLoad("http://www.xhban.com:8080/EM/admin/listunqualifiedhouses",null, unqualifiedhousesBack);
     })();
-    function allreleaseInformationBack(data){
+    function unqualifiedhousesBack(data){
         if(data.state == 0){
             var resultData = data.resultData;
             $("#sampleTable_info").text("总共有 "+resultData.length+" 行");
@@ -66,7 +66,7 @@ $(function () {
                     "<td>"+resultData[i].price+"</td>" +
                     "<td>"+resultData[i].time+"</td>" +
                     "<td>"+
-                    "<a style='color: red;cursor: pointer;font-size: 0.9em'><i class='fa fa-trash-o'></i>审核</a>" +
+                    "<a style='color: red;cursor: pointer;font-size: 0.9em'><i class='fa fa-check'></i>审核</a>" +
                     "</td>" +
                     "</tr>");
                 var audit_td = $("#sampleTable tbody td:last-child");
@@ -118,7 +118,7 @@ $(function () {
                 window.location.href = url;
             });
         }else{
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
     }
 
@@ -136,7 +136,8 @@ $(function () {
             crossDomain: true,
             success: callback,
             error: function (data) {
-                console.log(data)
+                console.log(data);
+                window.location.href = "index.html";
             }
         });
     }

@@ -204,8 +204,7 @@ $(function () {
         var list_image = $("#list img");
         dataLoad("http://www.xhban.com:8080/EM/user/listthreeimages",{},sfBack);
         function sfBack(data){
-            console.log(data);
-            if(data.state == 0){
+            if(data.state == 0 && data.resultData.length == 3){
                 for(var i = 0; i < list_image.length; i++){
                     if(i == 0){
                         $(list_image[i]).attr("src",data.resultData[2].path);
@@ -224,11 +223,11 @@ $(function () {
         dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
         function shopsBack(data) {
             console.log(data);
-            if(data.state == 0){
+            if(data.state == 0 && data.resultData.length == 3){
                 var ul = $(".content_img ul");
                 for(var i = 0; i < 3; i++){
                     ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
-                        "<span>"+data.resultData[i].name+"</span><br>" +
+                        "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                         "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                         "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
                 }
@@ -238,11 +237,11 @@ $(function () {
             dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
             function shopsBack(data) {
                 console.log(data);
-                if(data.state == 0){
+                if(data.state == 0 && data.resultData.length == 3){
                     var ul = $(".content_img ul");
                     for(var i = 0; i < 3; i++){
                         ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
-                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
                     }
@@ -250,15 +249,14 @@ $(function () {
             }
         });
         $(a[1]).mouseenter(function () {
-            console.log("fsfs");
             dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出租"},shopsBack);
             function shopsBack(data) {
                 console.log(data);
-                if(data.state == 0){
+                if(data.state == 0 && data.resultData.length == 3){
                     var ul = $(".content_img ul");
                     for(var i = 0; i < 3; i++){
                         ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
-                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
                     }
@@ -266,15 +264,14 @@ $(function () {
             }
         });
         $(a[2]).mouseenter(function () {
-            console.log("fsfs");
             dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"商铺"},shopsBack);
             function shopsBack(data) {
                 console.log(data);
-                if(data.state == 0){
+                if(data.state == 0 && data.resultData.length == 3){
                     var ul = $(".content_img ul");
                     for(var i = 0; i < 3; i++){
                         ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
-                            "<span>"+data.resultData[i].name+"</span><br>" +
+                            "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
                     }
