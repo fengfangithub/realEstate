@@ -35,7 +35,7 @@ $(function () {
     function personInformationBack(data){
         console.log(data);
         if(data.state == 0){
-            var person_name = $(".person_name");
+            var person_name = $(".person_name>a");
             var person_span = $(".person a span:last-child");
             person_name.text("欢迎您，"+data.resultData[0].name);
             var person_exit = $(".person a:last-child");
@@ -74,6 +74,9 @@ $(function () {
     }
     if(page_id == 4){
         buyRecord();
+    }
+    if(page_id == 5){
+        collection()
     }
 
 
@@ -163,21 +166,78 @@ $(function () {
             }
         });
         button.click(function () {
-            var data = {
-                name: $(input[0]).val(),
-                kind: $(input[1]).val(),
-                area: $(input[2]).val(),
-                village: $(input[3]).val(),
-                address: $(input[4]).val(),
-                size: $(input[5]).val(),
-                contact: $(input[6]).val(),
-                phone: $(input[7]).val(),
-                type: $(input[8]).val(),
-                price: $(input[9]).val()
-
-            };
-            dataLoad("http://www.xhban.com:8080/EM/user/relasehouse", data, publishHouseBack);
+            var map=new AMap.Map("map",{
+                zoom:10,
+                resizeEnable:true
+            });
+            var geolocation;
+            map.plugin('AMap.Geolocation', function() {
+                geolocation = new AMap.Geolocation({
+                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                    buttonOffset: new AMap.Pixel(50, 50),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                    // zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                    buttonPosition:'RB'
+                });
+                map.addControl(geolocation);
+                geolocation.getCurrentPosition();
+                AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+            });
+            function onComplete(data){
+                if(data){
+                    AMap.plugin('AMap.Geocoder',function(){
+                        var geocoder = new AMap.Geocoder({
+                        });
+                        var address = $(input[4]).val();
+                        geocoder.getLocation(address,function(status,result){
+                            if(status=='complete'&&result.geocodes.length){
+                                var latitude=result.geocodes[0].location.lat;
+                                var longtitude=result.geocodes[0].location.lng;
+                                var elevator,heating;
+                                if($(input[10]).val()=="有电梯"){
+                                    elevator=1;
+                                }else{
+                                    elevator=0;
+                                }
+                                if ($(input[11]).val()=="有供暖"){
+                                    heating=1;
+                                } else {
+                                    heating=0;
+                                }
+                                var textarea=$(".house_textarea textarea");
+                                var data = {
+                                    name: $(input[0]).val(),
+                                    kind: $(input[1]).val(),
+                                    area: $(input[2]).val(),
+                                    village: $(input[3]).val(),
+                                    address: $(input[4]).val(),
+                                    size: $(input[5]).val(),
+                                    contact: $(input[6]).val(),
+                                    phone: $(input[7]).val(),
+                                    type: $(input[8]).val(),
+                                    price: $(input[9]).val(),
+                                    elevator:elevator,
+                                    heating:heating,
+                                    direction:$(input[12]).val(),
+                                    floor:$(input[13]).val(),
+                                    finishtime:$(input[14]).val(),
+                                    decoration:textarea.val(),
+                                    latitude:latitude,
+                                    longtitude:longtitude
+                                };
+                                console.log(result)
+                                console.log(data);
+                                dataLoad("http://www.xhban.com:8080/EM/user/relasehouse", data, publishHouseBack);
+                            }else{
+                                $(p[2]).text("地址不清楚");
+                            }
+                        })
+                    });
+                }
+            }
             function publishHouseBack(data) {
+                console.log(data);
                 if(data.state != 0){
                     window.alert("发布失败");
                     window.location.href = window.location.href;
@@ -356,7 +416,7 @@ $(function () {
                     }
                 });
                 $(a[a.length - 1]).click(function () {
-                    if (num_page + 1 <= numberPage) {
+                    if (num_page + 1 < numberPage) {
                         var next = parseInt(num_page) + 1;
                         var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
                         window.location.href = url;
@@ -515,7 +575,7 @@ $(function () {
                     }
                 });
                 $(a[a.length - 1]).click(function () {
-                    if (num_page + 1 <= numberPage) {
+                    if (num_page + 1 < numberPage) {
                         var next = parseInt(num_page) + 1;
                         var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
                         window.location.href = url;
@@ -613,7 +673,152 @@ $(function () {
                     }
                 });
                 $(a[a.length - 1]).click(function () {
-                    if (num_page + 1 <= numberPage) {
+                    if (num_page + 1 < numberPage) {
+                        var next = parseInt(num_page) + 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
+                        window.location.href = url;
+                    }
+                });
+            }
+        }
+    }
+
+    //展示个人收藏
+    function collection() {
+        $(div[6]).css("display", "none");
+        $(div[7]).css("display","block");
+        dataLoad("http://www.xhban.com:8080/EM/user/list_all_collections", null, releaseRecordBack);
+        function releaseRecordBack(data) {
+            if (data.state == 0) {
+                console.log(data);
+                $(div[6]).css("display", "none");
+                $(div[7]).css("display", "block");
+                var ul_div = $("#collection ul");
+                var numberPage = Math.ceil(data.resultData.length / 5);
+                //添加分页a标签
+                var paging = $("#collection .paging");
+                paging.append("<a class='next_previous'>上一页</a>");
+                for (var i = 1; i <= numberPage; i++) {
+                    paging.append("<a class='paging_a'>" + i + "</a>");
+                }
+                paging.append("<a class='next_previous'>下一页</a>")
+                //数据加载
+                for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
+                    var house_data = data.resultData[j].house;
+                    var house_id = house_data.id;//房屋id
+                    var name = house_data.name;//房屋名字
+                    var kind = house_data.kind;//房屋类型
+                    var village = house_data.village;//小区
+                    var size = house_data.size;//大小
+                    var type = house_data.type;// 户型
+                    var time = house_data.time;//时间
+                    var price = house_data.price;//价格
+                    var traded;//是否售出
+                    var img_path = house_data.image;
+                    var collection_id=data.resultData[j].id;
+                    if (house_data == true) {
+                        traded = "已售卖";
+                    } else {
+                        traded = "未售卖";
+                    }
+                    var qualified;
+                    if (house_data.qualified == true) {
+                        qualified = "审核通过";
+                    } else {
+                        qualified = "审核中";
+                    }
+                    ul_div.append(
+                        "<li>" +
+                        "<div class='record_content'>" +
+                        "<span class='glyphicon glyphicon-chevron-down'></span>" +
+                        "<a><img src='" + img_path + "'></a>" +
+                        "<div class='record_describe'>" +
+                        "<h3><a>" + name + "</a></h3>" +
+                        "<div class='address'><span>" + village + "</span><span>" + kind + "</span><span>" + size +"  平米"+ "</span></div>" +
+                        "<div class='detailed'><span>" + type+"一厅"+ "</span><span>" + house_data.area + "</span><span>" + time + "</span></div>" +
+                        "<div class='state'><span>" + traded + "</span><span>" + qualified + "</span></div>" +
+                        "<div class='price'><span>" + price + "万</span><br><span>" + Math.ceil(price / size) + "万/m<sup>2</sup></span></div>" +
+                        "</div>" +
+                        "<div class='record_menu'><ul><li>删除收藏</li><li>详细信息</li></ul></div>" +
+                        "</div>" +
+                        "</li>");
+
+                    //下拉菜单事件
+                    var span = $(".record_content>span");
+                    var record_menu = $(".record_menu");
+                    record_menu.css("display", "none");
+                    $(span[j % 5]).click(function () {
+                        var num = j % 5;
+                        return function () {
+                            if ($(record_menu[num]).css("display") == "none") {
+                                $(record_menu[num]).css("display", "block");
+                            } else {
+                                $(record_menu[num]).css("display", "none");
+                            }
+                        }
+                    }());
+                    $(record_menu[j % 5]).mouseleave(function () {
+                        var num = j % 5;
+                        return function () {
+                            if ($(record_menu[num]).css("display") == "block") {
+                                $(record_menu[num]).css("display", "none");
+                            }
+                        }
+                    }());
+                    //功能点击事件
+                    var ul = $(".record_menu ul");
+                    var li = $(ul[j % 5]).find("li");
+                    $(li[0]).click(function () {
+                        var id = collection_id;
+                        return function () {
+                            dataLoad("http://www.xhban.com:8080/EM/user/delete_collection",{collection_id:id},collectionDeleteBack);
+                            function collectionDeleteBack(data) {
+                                console.log(data);
+                                if(data.state==0){
+                                    window.alert(data.message);
+                                    window.location.href=window.location.href;
+                                }
+                            }
+                        }
+                    }());
+                    $(li[1]).click(function () {
+                        var hd = house_id;
+                        var kind=kind;
+                        return function () {
+                            var k;
+                            if(kind == "出售"){
+                                k = 0;
+                            }else if(kind == "出租"){
+                                k = 1;
+                            }else{
+                                k = 2;
+                            }
+                            window.location.href = "house_details.html?house_id=" + hd+"&kind="+k;
+                        }
+                    }());
+                }
+                //分页点击事件
+                var a = $("#release .paging a");
+                a.css("background-color", "#fff");
+                $(a[parseInt(num_page)+1]).css("background-color", "#eaeaea");
+                for (var i = 1; i < a.length - 1; i++) {
+                    $(a[i]).click(function () {
+                        var num = i - 1;
+                        return function () {
+                            var url = "person_information.html?page_id=" + page_id + "&num_page=" + num;
+                            window.location.href = url;
+                        }
+                    }());
+                }
+                $(a[0]).click(function () {
+                    if (num_page - 1 >= 0) {
+                        var previous = parseInt(num_page) - 1;
+                        var url = "person_information.html?page_id=" + page_id + "&num_page=" + previous;
+                        window.location.href = url;
+                    }
+                });
+                $(a[a.length - 1]).click(function () {
+                    if (num_page + 1 < numberPage) {
                         var next = parseInt(num_page) + 1;
                         var url = "person_information.html?page_id=" + page_id + "&num_page=" + next;
                         window.location.href = url;
@@ -629,8 +834,7 @@ $(function () {
             $(li[i]).click(function () {
                 var variable = i;
                 return function () {
-                    var page_id = variable;
-                    var url = "person_information.html?page_id=" + page_id;
+                    var url = "person_information.html?page_id=" + variable;
                     window.location.href = url;
                 }
             }());
@@ -689,10 +893,23 @@ $(function () {
     var li = $("#select_send_1 li");
     var ul = $("#select_send_1");
     var selectDiv = $("#select1");
+
+
     var selectText_1 = $("#select2 input");
     var li_1 = $("#select_send_2 li");
     var ul_1 = $("#select_send_2");
     var selectDiv_1 = $("#select2");
+
+    var selectText_2 = $("#select3 input");
+    var li_2 = $("#select_send_3 li");
+    var ul_2 = $("#select_send_3");
+    var selectDiv_2 = $("#select3");
+
+    var selectText_3 = $("#select4 input");
+    var li_3 = $("#select_send_4 li");
+    var ul_3 = $("#select_send_4");
+    var selectDiv_3 = $("#select4");
+
     function selectFunction(text, lis, div, content){
         text.val($(lis[0]).text());
         div.click(function () {
@@ -713,4 +930,6 @@ $(function () {
 }
     selectFunction(selectText, li, selectDiv, ul);
     selectFunction(selectText_1, li_1, selectDiv_1, ul_1);
+    selectFunction(selectText_2, li_2, selectDiv_2, ul_2);
+    selectFunction(selectText_3, li_3, selectDiv_3, ul_3);
  });

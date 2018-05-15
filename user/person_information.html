@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="css/animation_style.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="tool/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=8d8f9ad8c4461307302bd9b44c4e094c"></script>
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 </head>
 <body>
 <div class="wrapper_index">
@@ -28,7 +30,7 @@
                         <a href="advanced_search.html?kind=2">商铺<span></span></a>
                     </li>
                     <li><a>移动APP</a></li>
-                    <li><a>附近</a></li>
+                    <li><a href="near.html">附近</a></li>
                 </ul>
                 <div class="person">
                     <a><span class="glyphicon glyphicon-user"></span><span></span></a>
@@ -41,13 +43,14 @@
 <div class="user_information">
     <div class="left">
         <div class="person_img"></div>
-        <div class="person_name"></div>
+        <div class="person_name"><a></a></div>
         <ul>
             <li><a>个人信息</a></li>
             <li><a>发布房屋</a></li>
             <li><a>发布记录</a></li>
             <li><a>售出记录</a></li>
             <li><a>购房记录</a></li>
+            <li><a>我的收藏</a></li>
         </ul>
     </div>
     <div class="right">
@@ -117,10 +120,10 @@
             </div>
         </div>
         <div class="publish_house">
+            <div id="map"></div>
             <div class="house_content">
                 <label><span>*</span>展示名:</label>
-                <input type="text" placeholder="必填">
-                <p></p>
+                <input type="text" placeholder="必填" value="feffffss">
             </div>
             <div class="house_content">
                 <label><span>*</span>发布类型:</label>
@@ -141,27 +144,27 @@
             </div>
             <div class="house_content">
                 <label><span>*</span>所在小区:</label>
-                <input type="text" placeholder="必填">
+                <input type="text" placeholder="必填" value="fefefesss">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>具体地址:</label>
-                <input type="text" placeholder="必填">
+                <input type="text" placeholder="必填" value="西华大学">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>房屋面积:</label>
-                <input type="text">
+                <input type="text" value="10">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>联系人:</label>
-                <input type="text" placeholder="必填">
+                <input type="text" placeholder="必填" value="fefef">
                 <p></p>
             </div>
             <div class="house_content">
                 <label><span>*</span>联系方式:</label>
-                <input type="text" placeholder="必填">
+                <input type="text" placeholder="必填" value="4651651">
                 <p></p>
             </div>
             <div class="house_content">
@@ -181,7 +184,45 @@
             </ul>
             <div class="house_content">
                 <label><span>*</span>房屋总价:</label>
-                <input type="text" placeholder="必填">
+                <input type="text" placeholder="必填" value="151">
+            </div>
+            <div class="house_content">
+                <label><span>*</span>电梯情况:</label>
+                <div id="select3" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </div>
+            <ul id="select_send_3" class="select_send">
+                <li>有电梯</li>
+                <li>无电梯</li>
+            </ul>
+            <div class="house_content">
+                <label><span>*</span>供暖情况:</label>
+                <div id="select4" class="select">
+                    <input type="text" readonly="readonly">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </div>
+            </div>
+            <ul id="select_send_4" class="select_send">
+                <li>有供暖</li>
+                <li>无供暖</li>
+            </ul>
+            <div class="house_content">
+                <label><span>*</span>房屋朝向:</label>
+                <input type="text">
+            </div>
+            <div class="house_content">
+                <label><span>*</span>楼层:</label>
+                <input type="text" value="10">
+            </div>
+            <div class="house_content">
+                <label><span>*</span>建楼时间:</label>
+                <input type="date" placeholder="必填">
+            </div>
+            <div class="house_textarea">
+                <label><span>*</span>装修情况:</label>
+                <textarea></textarea>
             </div>
             <div class="house_img">
                 <a class="file">图片上传
@@ -351,6 +392,12 @@
         <div class="loading">
             <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             <span>加载中请稍后...</span>
+        </div>
+        <div id="collection" class="record">
+            <ul>
+            </ul>
+            <div class="paging">
+            </div>
         </div>
     </div>
 </div>

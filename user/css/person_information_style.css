@@ -94,7 +94,18 @@ a{
     width: 100%;
     height: 48px;
     padding: 15px 5px;
-    font-size: 1.15em;
+}
+.person_name a{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 1em;
+    color: #52514d;
+}
+.person_name a:hover{
+    color: #52514d;
+    text-decoration: none;
 }
 .left ul{
     margin: 0;
@@ -252,12 +263,13 @@ a{
     position: relative;
 }
 .house_content{
-    width: 100%;
+    width: 50%;
     height: 50px;
     line-height: 50px;
     margin-bottom: 10px;
     text-align: start;
     position: relative;
+    float: left;
 }
 .house_content .select{
     width: 250px;
@@ -279,7 +291,7 @@ a{
     height: 95%;
     border: none;
     outline: none;
-    padding: 6px 10px;
+    padding: 5px 10px;
     cursor: pointer;
     color:#a1a1a1;
 }
@@ -294,13 +306,23 @@ a{
 }
 #select_send_1{
     position: absolute;
-    left: 110px;
-    top: 110px;
+    right: 15px;
+    top: 48px;
 }
 #select_send_2{
     position: absolute;
     left: 110px;
-    top: 530px;
+    top: 290px;
+}
+#select_send_3{
+    position: absolute;
+    left: 110px;
+    top: 350px;
+}
+#select_send_4{
+    position: absolute;
+    right: 15px;
+    top: 350px;
 }
 .publish_house ul li{
     width: 250px;
@@ -324,11 +346,13 @@ a{
     width: 100px;
     margin-left: 115px;
     color: red;
+    text-align: start;
 }
 .house_content label{
     width:80px;
     text-align: end;
     line-height: 40px;
+    margin-left: 15px;
 }
 .house_content label span{
     color: red;
@@ -344,13 +368,38 @@ a{
     padding: 6px 10px;
     outline: none;
     border-radius: 5px;
-    margin-left: 30px;
+    margin-left: 15px;
+}
+.house_textarea{
+    width: 50%;
+    float: left;
+    position: relative;
+}
+.house_textarea label{
+    width:80px;
+    text-align: end;
+    margin-left: 15px;
+    position: absolute;
+    top: 30%;
+}
+.house_textarea label span{
+    color: red;
+    font-size: 1.5em;
+    margin-right: 5px;
+    line-height: 20px;
+}
+.house_textarea textarea{
+    position: absolute;
+    left: 115px;
+    width: 249px;
+    height: 100px;
 }
 .house_img{
     width: 62%;
     height: 60px;
     display: flex;
     align-items: center;
+    float: left;
 }
 .house_img img{
     width: 60px;
@@ -389,6 +438,7 @@ a{
     width: 100%;
     text-align: center;
     margin-top: 20px;
+   float: left;
 }
 .button button{
     height: 40px;

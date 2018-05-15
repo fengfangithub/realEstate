@@ -218,16 +218,55 @@ $(function () {
         });
     })();
 
+    //搜索功能
+
+    (function search() {
+        var input=$(".search .input input");
+        var search_result=$(".search_result");
+        var ul=$(".search_result ul");
+        input.focus(function () {
+            search_result.css("display","block");
+        });
+        input.blur(function () {
+            setTimeout(function () {
+            search_result.css("display","none")},200);
+        });
+        input.on("input",function () {
+            var value=input.val();
+            dataLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter:value},searchResultBack);
+            function searchResultBack(data) {
+                if(data.state==0){
+                    if(data.resultData.length==0){
+                        ul.html("");
+                        ul.append("<li><a style='color: red'>没有相关信息</a></li>")
+                    }else{
+                        ul.html("");
+                        for(var i=0;i<data.resultData.length && i<5;i++){
+                            ul.append("<li><a>"+data.resultData[i].name+"</a></li>")
+                        };
+                        var a=$(".search_result ul li a");
+                        a.click(function () {
+                            input.val(this.text);
+                            search_result.css("display","none");
+                            pageLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter:this.text});
+                        })
+                    }
+                }
+            }
+        });
+    })();
+
     //页面房屋数据加载
     function pageLoad(url,data) {
         dataLoad(url,data, pageLoadBack);
     }
     function pageLoadBack(data) {
-        console.log(data);
+        console.log(data)
         if(data.state == 0){
             //添加分页a标签
             var numberPage = Math.ceil(data.resultData.length / 5);
             var paging = $(".paging");
+            paging.html("");
             if(numberPage != 0){
                 paging.append("<a class='next_previous'>上一页</a>");
                 for (var i = 1; i <= numberPage; i++) {
@@ -236,6 +275,7 @@ $(function () {
                 paging.append("<a class='next_previous'>下一页</a>");
             }
             var showContent = $(".show_content ul");
+            showContent.html("");
             for (var j = parseInt(num_page) * 5; j < (parseInt(num_page) + 1) * 5 && j < data.resultData.length; j++) {
                 var house_data = data.resultData[j];
                 var house_id = house_data.id;//房屋id
@@ -253,7 +293,7 @@ $(function () {
                 }
                 showContent.append
                 ("<li><div class='content'>" +
-                    "<a class='buy_a'>购买</a>" +
+                    "<a class='buy_a'>购买</a><a class='collection'>收藏</a>" +
                     "<div class='content_img'><a><img src='"+house_data.image+"'></a></div>" +
                     "<div class='content_show'>" +
                     "<h2>"+house_data.name+"</h2>" +
@@ -266,18 +306,34 @@ $(function () {
                 "</div></li>");
                 //请求购买
                 var buy = $(".content>a");
-                $(buy[j%5]).click(function (event) {
-                    dataLoad("http://www.xhban.com:8080/EM/user/requestdeal",{house_id: house_id},buyBack);
-                    function buyBack(data) {
-                        console.log(data);
-                        if(data.state == 0){
-                            window.alert(data.message);
-                            window.location.href = window.location.href;
+                $(buy[j%5*2]).click(function () {
+                    var id=house_id;
+                    return function(event){
+                        dataLoad("http://www.xhban.com:8080/EM/user/requestdeal",{house_id: id},buyBack);
+                        function buyBack(data) {
+                            if(data.state == 0){
+                                window.alert(data.message);
+                                window.location.href = window.location.href;
+                            }else{
+                                window.alert(data.message);
+                            }
                         }
-                    }
-                    event.stopPropagation();
-                });
-                //跳转详细页面
+                        event.stopPropagation();
+                    };
+                }());
+                // 请求收藏
+                var collection = $(".content>a");
+                $(collection[j%5*2+1]).click(function () {
+                    var id=house_id;
+                    return function(event){
+                        dataLoad("http://www.xhban.com:8080/EM/user/add_collection",{house_id:id},collectionBack);
+                        function collectionBack(data){
+                                window.alert(data.message);
+                        }
+                        event.stopPropagation();
+                    };
+                }());
+                // 跳转详细页面
                 var li = $(".show_content li");
                 $(li[j%5]).click(function () {
                     var id = house_id;

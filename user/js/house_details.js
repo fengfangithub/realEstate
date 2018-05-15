@@ -60,6 +60,11 @@ $(function () {
             }else{
                 $(houseMark[1]).text("售出");
             }
+            var info_span=$(".house_info .info_content span:last-child");
+            console.log(info_span);
+            $(info_span[0]).text(resultData.village);
+            $(info_span[1]).text(resultData.address);
+            $(info_span[2]).text(resultData.finishtime);
             $(details_span[0]).text(resultData.name);
             $(details_span[1]).text(resultData.type+"一厅");
             $(details_span[2]).text(resultData.size+" m");
@@ -70,6 +75,18 @@ $(function () {
             $(details_span[6]).text(resultData.area);
             $(details_span[7]).text(resultData.time);
             $(details_span[8]).text(resultData.address);
+            if(resultData.elevator==1){
+                $(details_span[9]).text("有电梯");
+            }else{
+                $(details_span[9]).text("无电梯");
+            }
+            if(resultData.heating==1){
+                $(details_span[10]).text("有供暖");
+            }else{
+                $(details_span[10]).text("无供暖");
+            }
+            $(details_span[11]).text(resultData.direction);
+            $(details_span[12]).text(resultData.finishtime);
             phone.text(resultData.phone);
         }
     }

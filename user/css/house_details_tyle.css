@@ -183,7 +183,7 @@ a{
     width: 100%;
     height: auto;
     padding: 20px 0 0 0px;
-    border-bottom: 1px solid #cfcfcf;
+    border-bottom: 1px solid #e6e6e6;
 }
 .head h2{
     font-size: 2.5em;
@@ -205,7 +205,7 @@ a{
 .house_mark span{
     display: block;
     width: 70px;
-    height: 100%;
+    height: 30px;
     float: left;
     margin-right: 20px;
     background-color: #F9FEF4;
@@ -214,17 +214,38 @@ a{
     border-radius:3px;
     color: #3cb570;
     border: 1px solid #7ED321;
+    margin-top: 20px;
 }
 .house_mark{
+    height: 70px;
+    width: 100%;
+    line-height: 70px;
+    position: relative;
+    border-bottom: 1px solid #eaeaea;
+}
+.house_info{
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+.info_content{
     height: 30px;
     width: 100%;
-    margin: 30px 0 20px 0;
+    line-height: 30px;
+}
+.info_content span{
+    float: left;
+}
+.info_content span:first-child{
+    color: #ced4da;
+    margin-right: 30px;
 }
 .phone{
     width: 100%;
     height: 50px;
     line-height: 50px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .phone p span{
     font-size: 2em;
@@ -236,7 +257,7 @@ a{
 /*详细信息*/
 .details_information{
     width: 1100px;
-    height: 300px;
+    height: auto;
     margin: 0 auto;
 }
 .house_content{
@@ -252,7 +273,7 @@ a{
 }
 .details{
     width: 70%;
-    height: 300px;
+    height: auto;
 }
 .base{
     width: 100%;

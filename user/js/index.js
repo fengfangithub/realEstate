@@ -94,8 +94,10 @@ $(function () {
         }else{
             $(p[3]).html("");
         }
+        console.log("dfdf");
         dataLoad("http://www.xhban.com:8080/EM/user/login",{phone: account,password: password},loginBack);
         function loginBack(data){
+            console.log(data);
             if(data.state != 0){
                 $(p[0]).text(data.message);
             }else{
@@ -225,6 +227,7 @@ $(function () {
             console.log(data);
             if(data.state == 0 && data.resultData.length == 3){
                 var ul = $(".content_img ul");
+                ul.html("");
                 for(var i = 0; i < 3; i++){
                     ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
                         "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
@@ -234,11 +237,12 @@ $(function () {
             }
         }
         $(a[0]).mouseenter(function () {
-            dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
+            dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出租"},shopsBack);
             function shopsBack(data) {
                 console.log(data);
                 if(data.state == 0 && data.resultData.length == 3){
                     var ul = $(".content_img ul");
+                    ul.html("");
                     for(var i = 0; i < 3; i++){
                         ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
                             "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
@@ -269,6 +273,7 @@ $(function () {
                 console.log(data);
                 if(data.state == 0 && data.resultData.length == 3){
                     var ul = $(".content_img ul");
+                    ul.html("");
                     for(var i = 0; i < 3; i++){
                         ul.append("<li><div><a><img class='img' src='"+data.resultData[i].image+"'></a><br>"+
                             "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
