@@ -75,7 +75,7 @@ $(function () {
         }
         if(serach != null){
             pageLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter:decodeURI(serach)})
-        }else if(price == "null" && size == "null" && type == "null"){
+        }else if(price == "null" && size == "null" && type == "null" && start_size=="null" && start_price=="null"){
             if(sort == 0){
                 pageLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind: $(checkbox_4[kind]).attr("data-kind")});
             }else if(sort == 1){
@@ -122,23 +122,25 @@ $(function () {
                     if(n == 1){
                         if(checkbox_1[s].checked){
                             price = s;
+                            start_price = $(checkbox[s]).attr("data-startprice");
+                            end_price = $(checkbox[s]).attr("data-endprice");
                         }else{
                             price = null;
+                            start_price=null;
+                            end_price=null;
                         }
-                        console.log(checkbox_1[s].checked);
-                        console.log(price);
-                        start_price = $(checkbox[s]).attr("data-startprice");
-                        end_price = $(checkbox[s]).attr("data-endprice");
                         url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price=null"+"&custom_size="+custom_size;
                         window.location = url;
                     }else if(n == 2){
                         if (checkbox_2[s].checked){
                             size = s;
+                            start_size = $(checkbox[s]).attr("data-startsize");
+                            end_size = $(checkbox[s]).attr("data-endsize");
                         }else{
                             size = null;
+                            start_size = null;
+                            end_size = null;
                         }
-                        start_size = $(checkbox[s]).attr("data-startsize");
-                        end_size = $(checkbox[s]).attr("data-endsize");
                         url = "advanced_search.html?"+"price="+price+"&size="+size+"&type="+type+"&kind="+kind+"&start_price="+start_price+"&end_price="+end_price+"&start_size="+start_size+"&end_size="+end_size+"&custom_price="+custom_price+"&custom_size=null";
                         window.location = url;
                     }else if(n == 3){

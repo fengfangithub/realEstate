@@ -243,11 +243,11 @@ a{
 }
 /*搜索结果区*/
 .show_bar{
-    width: 1150px;
+    width: 900px;
     height: 45px;
-    margin: 0px auto;
     margin-top: 50px;
     border-bottom: 2px solid #3cb570;
+    float: left;
 }
 .show_bar a{
     display: block;
@@ -273,12 +273,73 @@ a{
     text-decoration: none;
     color: #5e5e5e;
 }
-
-.show_content{
+.showcontent{
     width: 1150px;
-    min-height: 550px;
     margin: 0 auto;
+}
+.hot{
+    width: 180px;
+    float: right;
+    margin-top: 50px;
+}
+.map{
+    width: 180px;
+    padding: 30px 0;
+    border-bottom: 1px solid #ced4da;
+}
+.pic{
+    width: 110px;
+    height: 100px;
+    margin: 21px 35px 0;
+}
+.map a{
+    display: block;
+    line-height: 36px;
+    background-color: #4fb5a5;
+    width: 100%;
+    height: 36px;
+    margin-top: 20px;
+    color: #f8ffff;
+    text-align: center;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+.map a:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.pic img{
+    width: 100%;
+    height: 100%;
+}
+.hot h4{
+    margin: 30px 0 10px 0;
+}
+.hot ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.hot ul li{
+    width: 100%;
+    line-height: 40px;
+}
+.hot ul li a{
+    color: #3a3a3a;
+    display:block;
+    overflow:hidden;
+    word-break:keep-all;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.show_content{
+    width: 900px;
+    min-height: auto;
     position: relative;
+    float: left;
+}
+.clear{
+    clear: both;
 }
 .show_content ul{
     list-style: none;
