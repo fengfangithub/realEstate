@@ -21,11 +21,16 @@ a{
     justify-content: center;
     background-color: #3cb570;
 }
-.navigation .logo{
-    width: 100px;
-    height: 100%;
+.logo{
     float: left;
-    background-color: green;
+    width: 160px;
+    height: 100%;
+    /*background-color: #3cb570;*/
+    color: #f8ffff;
+    font-family: "华文隶书";
+    text-align: center;
+    line-height: 59px;
+    font-size: 3em;
 }
 .navigation .menu{
     width: 1000px;
@@ -245,7 +250,11 @@ a{
     width: 100%;
     height: 50px;
     line-height: 50px;
-    margin-top: 10px;
+    margin-top: 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+.phone p{
+    margin: 0;
 }
 .phone p span{
     font-size: 2em;
@@ -253,6 +262,20 @@ a{
 }
 .phone p span:first-child{
     margin-right: 20px;
+}
+.trading{
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+.trading button{
+    width: 100px;
+    height: 30px;
+    background: #b5271b;
+    outline: none;
+    border: none;
+    color: #FFFFFF;
 }
 /*详细信息*/
 .details_information{

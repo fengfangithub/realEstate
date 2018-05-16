@@ -135,6 +135,23 @@ $(function () {
             $(contain_img[num-1]).css("border", "1px solid red");
         });
     }
+    //购买功能
+    var buy = $(".trading>button");
+    buy.click(function () {
+        var id=house_id;
+        return function(){
+            dataLoad("http://www.xhban.com:8080/EM/user/requestdeal",{house_id: id},buyBack);
+            function buyBack(data) {
+                console.log(data);
+                if(data.state == 0){
+                    window.alert(data.message);
+                    window.location.href = window.location.href;
+                }else{
+                    window.alert(data.message);
+                }
+            }
+        };
+    }());
     //请求信息
     function dataLoad(url, data, callback) {
         $.ajax({

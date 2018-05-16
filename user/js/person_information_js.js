@@ -587,7 +587,7 @@ $(function () {
 
     //展示购买记录
     function buyRecord() {
-        dataLoad("http://www.xhban.com:8080/EM/user/listbuyinfos", null, tradingRecord);
+        dataLoad("http://www.xhban.com:8080/EM/user/listbuyinfos", {}, tradingRecord);
         function tradingRecord(data) {
             console.log(data);
             if (data.state == 0) {
