@@ -11,7 +11,7 @@
 <div class="wrapper_index">
     <header>
         <div class="contain">
-            <ul>
+            <ul class="nav_bar_left">
                 <li>
                     <a href="index.html">首页<span></span></a>
                 </li>
@@ -27,9 +27,15 @@
                 <li><a href="appInformation.html">移动APP</a></li>
                 <li><a href="near.html">附近</a></li>
             </ul>
-            <div class="person">
-                <span class="glyphicon glyphicon-user"></span>
-                <a></a>
+            <div class="nav_bar_right">
+                <div class="login_register">
+                    <a>登录</a>
+                    <a>注册</a>
+                </div>
+                <div class="login_information">
+                    <a href="person_information.html"><span class="glyphicon glyphicon-user"></span><span></span></a>
+                    <a>退出</a>
+                </div>
             </div>
         </div>
     </header>
@@ -53,9 +59,11 @@
             </div>
         </div>
         <div class="search_result">
-            <div>你可能在找</div>
-            <ul>
-            </ul>
+            <div>
+                <div>你可能在找</div>
+                <ul>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -167,11 +175,11 @@
             <div class="check_box">
                 <div class="check_box_content">
                     <input type="checkbox" data-kind="出售">
-                    <span>出租房</span>
+                    <span>新房</span>
                 </div>
                 <div class="check_box_content">
                     <input type="checkbox" data-kind="出租">
-                    <span>新房</span>
+                    <span>租房</span>
                 </div>
                 <div class="check_box_content">
                     <input type="checkbox" data-kind="商铺">
@@ -223,6 +231,80 @@
 
     </div>
 </footer>
+!--dialog-->
+<div class="dialog"></div>
+<!--login model-->
+<div class="login_content">
+    <div class="login_content_header">
+        <h1>
+            <span class="login_header_span">登录</span>
+        </h1>
+        <button class="glyphicon glyphicon-remove"></button>
+    </div>
+    <div class="login_body">
+        <div>
+            <p></p>
+            <input type="text" placeholder="请输入账号/手机号" value="123456">
+            <p></p>
+            <input type="password" placeholder="请输入密码,区分大小写,不能用空格" value="123456">
+            <p></p>
+            <div class="func">
+                <input id="check" type="checkbox" checked="checked">
+                <span>同意网站协议</span>
+                <a>找回密码</a>
+            </div>
+            <p></p>
+            <button>登录</button>
+        </div>
+    </div>
+</div>
+<!--register model-->
+<div class="register_content">
+    <div class="register_content_header">
+        <h1>
+            <span class="register_header_span">注册</span>
+        </h1>
+        <button class="glyphicon glyphicon-remove"></button>
+    </div>
+    <div class="register_body">
+        <div>
+            <p></p>
+            <div class="register_form">
+                <label><em>*</em>电话号码:</label>
+                <input type="text" placeholder="请输入电话号码/必填">
+                <p></p>
+            </div>
+            <div class="register_form">
+                <label><em>*</em>设置密码:</label>
+                <input type="password" placeholder="请输入密码/必填">
+                <p></p>
+            </div>
+            <div class="register_form">
+                <label><em>*</em>确认密码:</label>
+                <input type="password" placeholder="再次输入密码/必填">
+                <p></p>
+            </div>
+            <div class="register_form">
+                <label><em>*</em>用户名:</label>
+                <input type="text" placeholder="请输入用户名/必填">
+                <p></p>
+            </div>
+            <div class="register_form">
+                <label><em>*</em>地址:</label>
+                <input type="text" placeholder="请输入你的地址">
+            </div>
+            <div class="gender">
+                <label><em>*</em>性别:</label>
+                <input type="checkbox" value="男"><span>男</span>
+                <input type="checkbox" value="女"><span>女</span>
+                <input type="checkbox" value="" checked="checked"><span>不公开</span>
+            </div>
+            <p></p>
+            <button>注册</button>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="js/advanced_search.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

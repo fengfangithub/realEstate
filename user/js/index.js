@@ -27,6 +27,7 @@ $(function () {
     var register_cancel = $(".register_content_header button");
     //登录弹出框事件
     login.onclick = function () {
+        console.log("ff");
         dialog.css("display", "block");
         login_content.css("display", "block");
         $(document).bind("mousewheel", function (event, delta) {
@@ -181,6 +182,7 @@ $(function () {
     function loginState() {
         dataLoad("http://www.xhban.com:8080/EM/user/lookinfo",null,stateBack);
         function stateBack(data) {
+            console.log(data);
             var login_information = $(".login_information");
             var login_register = $(".login_register");
             var span = $(".login_information a span:last-child");
@@ -224,6 +226,7 @@ $(function () {
         var a = $(".poins");
         dataLoad("http://www.xhban.com:8080/EM/user/listprettyhousesbyparameterandorderbydefault",{kind:"出售"},shopsBack);
         function shopsBack(data) {
+            console.log(data);
             if(data.state == 0 && data.resultData.length >= 3){
                 var ul = $(".content_img ul");
                 ul.html("");
@@ -232,6 +235,15 @@ $(function () {
                         "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                         "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                         "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                }
+                var li=$(".content_img ul li");
+                for(var i=0;i<3;i++){
+                    $(li[i]).click(function () {
+                        var house_id=data.resultData[i].id;
+                        return function () {
+                            window.location.href="house_details.html?house_id="+house_id;
+                        }
+                    }())
                 }
             }
         }
@@ -246,6 +258,15 @@ $(function () {
                             "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                    }
+                    var li=$(".content_img ul li");
+                    for(var i=0;i<3;i++){
+                        $(li[i]).click(function () {
+                            var house_id=data.resultData[i].id;
+                            return function () {
+                                window.location.href="house_details.html?house_id="+house_id;
+                            }
+                        }())
                     }
                 }
             }
@@ -262,6 +283,15 @@ $(function () {
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
                     }
+                    var li=$(".content_img ul li");
+                    for(var i=0;i<3;i++){
+                        $(li[i]).click(function () {
+                            var house_id=data.resultData[i].id;
+                            return function () {
+                                window.location.href="house_details.html?house_id="+house_id;
+                            }
+                        }())
+                    }
                 }
             }
         });
@@ -276,6 +306,15 @@ $(function () {
                             "<span class='house_name'>"+data.resultData[i].name+"</span><br>" +
                             "<span>场价:</span><span>"+Math.ceil(data.resultData[i].price/data.resultData[i].size)+"</span><span>万元/m<sup>2</sup></span><br>" +
                             "<span>地址:</span><span>"+data.resultData[i].address+"</span></div></li>")
+                    }
+                    var li=$(".content_img ul li");
+                    for(var i=0;i<3;i++){
+                        $(li[i]).click(function () {
+                            var house_id=data.resultData[i].id;
+                            return function () {
+                                window.location.href="house_details.html?house_id="+house_id;
+                            }
+                        }())
                     }
                 }
             }

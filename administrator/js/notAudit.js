@@ -2,7 +2,7 @@ $(function () {
 
     var a = $(".app-menu li a");
     for (var i = 0; i < a.length; i++ ){
-        if(i != 1){
+        if(i != 3){
             $(a[i]).mouseenter(function () {
                 $(this).css("border-left","3px solid #009688");
             });

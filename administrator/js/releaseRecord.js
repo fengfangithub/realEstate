@@ -32,7 +32,18 @@ $(function () {
 
     //请求所有用户发布信息
     (function release() {
-        dataLoad("http://www.xhban.com:8080/EM/admin/listhousesofuser",{user_id: user_id}, allreleaseInformationBack);
+        if(user_id != -1){
+            dataLoad("http://www.xhban.com:8080/EM/admin/listhousesofuser",{user_id: user_id}, allreleaseInformationBack);
+        }else{
+            dataLoad("http://www.xhban.com:8080/EM/admin/listusers",null, allUserInformationBack);
+            function allUserInformationBack(data){
+                if(data.state==0){
+                    var user_id=data.resultData[0].id;
+                    dataLoad("http://www.xhban.com:8080/EM/admin/listhousesofuser",{user_id:user_id},allreleaseInformationBack)
+                }
+            }
+        }
+
     })();
     function allreleaseInformationBack(data){
         console.log(data)
@@ -99,14 +110,9 @@ $(function () {
             select.val(rows);
             select.change(function () {
                 var text = select.val();
-                var url = "allUser.html?page_num=1"+"&rows="+text;
+                var url = "releaseRecord.html?page_num=1"+"&rows="+text;
                 window.location.href = url;
             });
-        }else if(data.state == 1){
-            window.alert(data.message)
-            window.location.href = "allUser.html";
-        }else{
-            window.location.href = "index.html";
         }
     }
 

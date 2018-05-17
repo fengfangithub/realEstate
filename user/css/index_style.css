@@ -309,6 +309,7 @@ a:hover{
     float: left;
     margin-right: 1%;
     font-size: 1.2em;
+    cursor: pointer;
 }
 .content_img ul li:last-child{
     margin: 0!important;

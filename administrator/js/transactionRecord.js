@@ -2,7 +2,7 @@ $(function () {
 
     var a = $(".app-menu li a");
     for (var i = 0; i < a.length; i++ ){
-        if(i != 1){
+        if(i != 2){
             $(a[i]).mouseenter(function () {
                 $(this).css("border-left","3px solid #009688");
             });
@@ -33,7 +33,18 @@ $(function () {
 
     //请求所有用户发布信息
     (function release() {
-        dataLoad("http://www.xhban.com:8080/EM/admin/listtradeinfosofuser",{user_id: user_id}, alltradeInformationBack);
+        if(user_id !=-1){
+            dataLoad("http://www.xhban.com:8080/EM/admin/listtradeinfosofuser",{user_id: user_id}, alltradeInformationBack);
+        }else{
+            dataLoad("http://www.xhban.com:8080/EM/admin/listusers",null, allUserInformationBack);
+            function allUserInformationBack(data){
+                if(data.state==0){
+                    var user_id=data.resultData[0].id;
+                    dataLoad("http://www.xhban.com:8080/EM/admin/listtradeinfosofuser",{user_id:user_id},alltradeInformationBack)
+                }
+            }
+        }
+
     })();
     function alltradeInformationBack(data){
         if(data.state == 0){
@@ -93,13 +104,13 @@ $(function () {
             }
             $(a[0]).click(function () {
                 if(page_num-1>=1){
-                    var url = "releaseRecord?page_num="+(page_num-1)+"&rows="+rows+"&user_id="+user_id;
+                    var url = "releaseRecord.html?page_num="+(page_num-1)+"&rows="+rows+"&user_id="+user_id;
                     window.location.href = url;
                 }
             });
             $(a[a.length-1]).click(function () {
                 if(page_num+1<=num){
-                    var url = "releaseRecord?page_num="+(page_num+1)+"&rows="+rows+"&user_id="+user_id;
+                    var url = "releaseRecord.html?page_num="+(page_num+1)+"&rows="+rows+"&user_id="+user_id;
                     window.location.href = url;
                 }
             });
@@ -109,7 +120,7 @@ $(function () {
             select.val(rows);
             select.change(function () {
                 var text = select.val();
-                var url = "allUser.html?page_num=1"+"&rows="+text;
+                var url = "releaseRecord.html?page_num=1"+"&rows="+text;
                 window.location.href = url;
             });
         }else{

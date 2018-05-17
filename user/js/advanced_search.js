@@ -238,6 +238,11 @@ $(function () {
             dataLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter:value},searchResultBack);
             function searchResultBack(data) {
                 if(data.state==0){
+                    var bt=$(".input button");
+                    var input=$(".search .input input");
+                    bt.click(function () {
+                        pageLoad("http://www.xhban.com:8080/EM/user/searchhouses",{parameter:input.text});
+                    });
                     if(data.resultData.length==0){
                         ul.html("");
                         ul.append("<li><a style='color: red'>没有相关信息</a></li>")
@@ -295,7 +300,7 @@ $(function () {
                 }
                 showContent.append
                 ("<li><div class='content'>" +
-                    "<a class='buy_a'>购买</a><a class='collection'>收藏</a>" +
+                    "<a class='buy_a'>预定</a><a class='collection'>收藏</a>" +
                     "<div class='content_img'><a><img src='"+house_data.image+"'></a></div>" +
                     "<div class='content_show'>" +
                     "<h2>"+house_data.name+"</h2>" +
@@ -310,11 +315,12 @@ $(function () {
                 var buy = $(".content>a");
                 $(buy[j%5*2]).click(function () {
                     var id=house_id;
+                    var phone=house_data.phone;
                     return function(event){
                         dataLoad("http://www.xhban.com:8080/EM/user/requestdeal",{house_id: id},buyBack);
                         function buyBack(data) {
                             if(data.state == 0){
-                                window.alert(data.message);
+                                window.alert("预定成功！请联系卖家，联系电话："+phone);
                                 window.location.href = window.location.href;
                             }else{
                                 window.alert(data.message);
